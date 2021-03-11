@@ -1,0 +1,8 @@
+export const STEP_ACTION_TYPES = {
+    CREATE: "STEP/CREATE",
+    UPDATE: "STEP/UPDATE",
+    DELETE: "STEP/DELETE",
+    GET_ALL: "STEP/GET_ALL",
+    GET_BY_ID: "STEP/GET_BY_ID",
+  };
+  
