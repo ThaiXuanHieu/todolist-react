@@ -18,6 +18,12 @@ export const task = (state = initialState, action) => {
         list: [...state.list, action.payload],
       };
 
+      case TASK_ACTION_TYPES.UPDATE_STATUS:
+      return {
+        ...state,
+        list: state.list.map(x => x.id === action.payload.id ? action.payload : x),
+      };
+
     case TASK_ACTION_TYPES.GET_BY_ID:
       return {};
 

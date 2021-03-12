@@ -8,13 +8,13 @@ const initialState = {
 
 export const auth = (state = initialState, action) => {
   switch (action.type) {
+    
     case USER_ACTION_TYPES.LOGIN:
       return {
         ...state,
         user: action.payload,
       };
     case USER_ACTION_TYPES.REGISTER:
-      console.log(action.payload)
       return {
         ...state,
         user: action.payload,

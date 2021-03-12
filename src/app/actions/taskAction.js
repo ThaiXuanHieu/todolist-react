@@ -3,6 +3,7 @@ import TaskService from "../../services/taskService";
 export const TASK_ACTION_TYPES = {
   CREATE: "TASK/CREATE",
   UPDATE: "TASK/UPDATE",
+  UPDATE_STATUS: "TASK/UPDATE_STATUS",
   DELETE: "TASK/DELETE",
   GET_ALL: "TASK/GET_ALL",
   GET_BY_ID: "TASK/GET_BY_ID",
@@ -24,8 +25,8 @@ export const getTasks = () => (dispatch) => {
     });
 };
 
-export const getTask = () => (dispatch) => {
-  return TaskService.getTask()
+export const getTask = (id) => (dispatch) => {
+  return TaskService.getTask(id)
     .then((response) => {
       dispatch({
         type: TASK_ACTION_TYPES.GET_BY_ID,
@@ -45,6 +46,23 @@ export const create = (newTask) => (dispatch) => {
     .then((response) => {
       dispatch({
         type: TASK_ACTION_TYPES.CREATE,
+        payload: response.data,
+      });
+    })
+    .catch((error) => {
+      dispatch({
+        type: "ERROR",
+        payload: error,
+      });
+    });
+};
+
+export const updateStatus = (id, isComplete) => (dispatch) => {
+  return TaskService.updateStatus(id, isComplete)
+    .then((response) => {
+      console.log(response)
+      dispatch({
+        type: TASK_ACTION_TYPES.UPDATE_STATUS,
         payload: response.data,
       });
     })

@@ -18,16 +18,13 @@ const login = async (email, password) => {
         response = error.response;
       }
     });
-
   return response;
 };
 
 const register = async (newUser) => {
   let response;
   await api
-    .post(AUTH_BASE_URL + "/register",
-      newUser,
-    )
+    .post(AUTH_BASE_URL + "/register", newUser)
     .then((res) => {
       response = res;
       localStorage.setItem("user", JSON.stringify(res.data));
