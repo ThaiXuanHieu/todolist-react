@@ -19,18 +19,18 @@ export const getTasks = async () => {
 };
 
 export const getTask = async (id) => {
-  let data;
+  let response;
   await api
     .get(`${TASK_BASE_URL}/${id}`)
     .then((res) => {
-      data = res;
+      response = res;
     })
     .catch((error) => {
       if (error.response) {
-        data = error.response;
+        response = error.response;
       }
     });
-  return data;
+  return response;
 };
 
 export const create = async (newTask) => {
@@ -68,7 +68,6 @@ export const updateStatus = async (id, isComplete) => {
   await api
     .patch(`${TASK_BASE_URL}/${id}/${isComplete}`)
     .then((res) => {
-      console.log(res)
       response = res;
     })
     .catch((error) => {

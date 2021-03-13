@@ -4,10 +4,13 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import * as taskAction from "../../actions/taskAction";
 import Header from "../Header/Header";
+
+
 const TaskPage = (props) => {
+
   const [currentId, setCurrentId] = useState(0);
 
-  const { list } = useSelector((state) => state.task);
+  const { list, task } = useSelector((state) => state.task);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -21,7 +24,7 @@ const TaskPage = (props) => {
         <Header />
       </div>
       <div className="col-md-8">
-        <TaskForm {...{ currentId, setCurrentId }} />
+        <TaskForm {...{ currentId, setCurrentId }} task={task} />
         <TaskList tasks={list} />
       </div>
     </div>

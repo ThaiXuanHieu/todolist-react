@@ -1,15 +1,13 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import * as taskAction from "../../actions/taskAction";
 
 const TaskForm = (props) => {
   const [title, setTitle] = useState("");
   const [dueDate, setDueDate] = useState("");
 
-  const { list } = useSelector((state) => state.task);
-  console.log(props.currentId);
-  console.log(list);
   const dispatch = useDispatch();
+
   const newTask = {
     title: title,
     dueDate: dueDate,

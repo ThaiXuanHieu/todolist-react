@@ -60,7 +60,6 @@ export const create = (newTask) => (dispatch) => {
 export const updateStatus = (id, isComplete) => (dispatch) => {
   return TaskService.updateStatus(id, isComplete)
     .then((response) => {
-      console.log(response)
       dispatch({
         type: TASK_ACTION_TYPES.UPDATE_STATUS,
         payload: response.data,

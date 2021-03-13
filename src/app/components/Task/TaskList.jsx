@@ -3,13 +3,17 @@ import { useDispatch } from "react-redux";
 // import taskService from "../../../../services/taskService";
 import * as taskAction from "../../actions/taskAction";
 import "./style.css";
-import { GetDate } from '../../utils/formatDate'
+import { GetDate } from "../../utils/formatDate";
 
 const TaskList = (props) => {
   const dispatch = useDispatch();
 
   const handleDelete = (id) => {
     dispatch(taskAction.remove(id));
+  };
+
+  const handleUpdate = (id) => {
+    dispatch(taskAction.getTask(id));
   };
 
   const handleChange = (id, isComplete) => {
@@ -46,10 +50,7 @@ const TaskList = (props) => {
                 <td>{GetDate(item.dueDate)}</td>
                 <td>
                   <button className="btn btn-info">Thêm bước</button>
-                  <button
-                    className="btn btn-warning"
-                    
-                  >
+                  <button className="btn btn-warning" onClick={() => handleUpdate(item.id)}>
                     Sửa
                   </button>
                   <button
