@@ -13,16 +13,17 @@ const RegisterForm = (props) => {
 
   const dispatch = useDispatch();
 
-  const newUser = {
-    email: email,
-    password: password,
-    confirmPassword: confirmPassword,
-    userName: userName,
-    firstName: firstName,
-    lastName: lastName,
-  };
-
   function handleSubmit(e) {
+    
+    const newUser = {
+      email: email,
+      password: password,
+      confirmPassword: confirmPassword,
+      userName: userName,
+      firstName: firstName,
+      lastName: lastName,
+    };
+
     e.preventDefault();
     dispatch(register(newUser))
       .then(() => {

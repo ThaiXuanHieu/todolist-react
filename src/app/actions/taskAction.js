@@ -57,6 +57,24 @@ export const create = (newTask) => (dispatch) => {
     });
 };
 
+export const update = (updateTask) => (dispatch) => {
+  return TaskService.update(updateTask)
+    .then((response) => {
+      dispatch({
+        type: TASK_ACTION_TYPES.UPDATE,
+        payload: response.data,
+      });
+      //return Promise.resolve();
+    })
+    .catch((error) => {
+      dispatch({
+        type: "ERROR",
+        payload: error,
+      });
+      //return Promise.reject();
+    });
+};
+
 export const updateStatus = (id, isComplete) => (dispatch) => {
   return TaskService.updateStatus(id, isComplete)
     .then((response) => {

@@ -4,11 +4,12 @@ import { store } from "./app/store/store";
 import "bootstrap/dist/css/bootstrap.css";
 import Router from "./app/Router";
 import { BrowserRouter } from "react-router-dom";
+import { history } from "./app/utils/history";
 function App() {
   return (
     <Provider store={store}>
       <BrowserRouter>
-        <Router />
+        <Router history={history} />
       </BrowserRouter>
     </Provider>
   );

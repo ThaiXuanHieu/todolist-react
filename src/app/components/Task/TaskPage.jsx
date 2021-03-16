@@ -1,14 +1,12 @@
 import TaskForm from "./TaskForm";
 import TaskList from "./TaskList";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import * as taskAction from "../../actions/taskAction";
 import Header from "../Header/Header";
 
 
 const TaskPage = (props) => {
-
-  const [currentId, setCurrentId] = useState(0);
 
   const { list, task } = useSelector((state) => state.task);
   const dispatch = useDispatch();
@@ -24,7 +22,7 @@ const TaskPage = (props) => {
         <Header />
       </div>
       <div className="col-md-8">
-        <TaskForm {...{ currentId, setCurrentId }} task={task} />
+        <TaskForm task={task} />
         <TaskList tasks={list} />
       </div>
     </div>

@@ -48,6 +48,21 @@ export const create = async (newTask) => {
   return data;
 };
 
+export const update = async (updateTask) => {
+  let data;
+  await api
+    .put(`${TASK_BASE_URL}/${updateTask.id}`, updateTask)
+    .then((res) => {
+      data = res;
+    })
+    .catch((error) => {
+      if (error.response) {
+        data = error.response;
+      }
+    });
+  return data;
+};
+
 export const remove = async (id) => {
   let response = null;
   await api
@@ -85,4 +100,5 @@ export default {
   create,
   remove,
   updateStatus,
+  update
 };
