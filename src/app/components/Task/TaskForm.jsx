@@ -19,13 +19,16 @@ const TaskForm = (props) => {
   function handleSubmit(e) {
     e.preventDefault();
 
+    const user = JSON.parse(localStorage.getItem("user"));
+    
     const task = {
       id: id,
       title: title,
       dueDate: dueDate,
       isComplete: isComplete,
+      createdBy: user.id
     };
-
+    
     if (!id) {
       dispatch(taskAction.create(task))
         .then(() => {
