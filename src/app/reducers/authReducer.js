@@ -15,6 +15,7 @@ export const auth = (state = initialState, action) => {
         user: action.payload,
       };
     case USER_ACTION_TYPES.REGISTER:
+      console.log(action.payload)
       return {
         ...state,
         user: action.payload,

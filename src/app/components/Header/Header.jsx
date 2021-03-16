@@ -22,7 +22,7 @@ const Header = (props) => {
       <div>
         Hello, {user.fullName}
         <a href="/login" className="ml-5" onClick={handleLogout}>
-          Logout
+          Logout <span>&#8627;</span>
         </a>
       </div>
     </div>

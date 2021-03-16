@@ -36,6 +36,7 @@ export const register = (newUser) => (dispatch) => {
       });
     })
     .catch((error) => {
+      console.log(error);
       dispatch({
         type: "ERROR",
         payload: error,

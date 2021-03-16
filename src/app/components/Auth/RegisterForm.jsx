@@ -14,7 +14,8 @@ const RegisterForm = (props) => {
   const dispatch = useDispatch();
 
   function handleSubmit(e) {
-    
+    e.preventDefault();
+
     const newUser = {
       email: email,
       password: password,
@@ -24,7 +25,6 @@ const RegisterForm = (props) => {
       lastName: lastName,
     };
 
-    e.preventDefault();
     dispatch(register(newUser))
       .then(() => {
         props.history.push("/task");
@@ -35,7 +35,7 @@ const RegisterForm = (props) => {
   }
 
   return (
-    <>
+    <div>
       <div className="container">
         <h1 className="text-center mb-5">Register</h1>
         <div className="d-flex justify-content-center">
@@ -104,7 +104,7 @@ const RegisterForm = (props) => {
           </form>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

@@ -6,6 +6,7 @@ export const TASK_ACTION_TYPES = {
   UPDATE_STATUS: "TASK/UPDATE_STATUS",
   DELETE: "TASK/DELETE",
   GET_ALL: "TASK/GET_ALL",
+  SEARCH: "TASK/SEARCH",
   GET_BY_ID: "TASK/GET_BY_ID",
 };
 
@@ -30,6 +31,22 @@ export const getTask = (id) => (dispatch) => {
     .then((response) => {
       dispatch({
         type: TASK_ACTION_TYPES.GET_BY_ID,
+        payload: response.data,
+      });
+    })
+    .catch((error) => {
+      dispatch({
+        type: "ERROR",
+        payload: error,
+      });
+    });
+};
+
+export const search = (searchString) => (dispatch) => {
+  return TaskService.search(searchString)
+    .then((response) => {
+      dispatch({
+        type: TASK_ACTION_TYPES.SEARCH,
         payload: response.data,
       });
     })

@@ -33,6 +33,21 @@ export const getTask = async (id) => {
   return response;
 };
 
+export const search = async (searchString) => {
+  let response;
+  await api
+    .get(`${TASK_BASE_URL}/s/${searchString}`)
+    .then((res) => {
+      response = res;
+    })
+    .catch((error) => {
+      if (error.response) {
+        response = error.response;
+      }
+    });
+  return response;
+};
+
 export const create = async (newTask) => {
   let data;
   await api
@@ -100,5 +115,6 @@ export default {
   create,
   remove,
   updateStatus,
-  update
+  update,
+  search
 };
