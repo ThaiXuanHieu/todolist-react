@@ -10,8 +10,8 @@ export const TASK_ACTION_TYPES = {
   GET_BY_ID: "TASK/GET_BY_ID",
 };
 
-export const getTasks = () => (dispatch) => {
-  return TaskService.getTasks()
+export const getTasks = (userId) => (dispatch) => {
+  return TaskService.getTasks(userId)
     .then((response) => {
       dispatch({
         type: TASK_ACTION_TYPES.GET_ALL,
@@ -42,8 +42,8 @@ export const getTask = (id) => (dispatch) => {
     });
 };
 
-export const search = (searchString) => (dispatch) => {
-  return TaskService.search(searchString)
+export const search = (userId, searchString) => (dispatch) => {
+  return TaskService.search(userId, searchString)
     .then((response) => {
       dispatch({
         type: TASK_ACTION_TYPES.SEARCH,

@@ -11,8 +11,9 @@ const TaskPage = (props) => {
   const { list, task } = useSelector((state) => state.task);
   const dispatch = useDispatch();
 
+  const user = JSON.parse(localStorage.getItem("user"));
   useEffect(() => {
-    dispatch(taskAction.getTasks());
+    dispatch(taskAction.getTasks(user.id));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

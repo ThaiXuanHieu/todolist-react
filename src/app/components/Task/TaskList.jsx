@@ -22,11 +22,11 @@ const TaskList = (props) => {
   };
 
   const [searchString, setSearchString] = useState("");
-
+  const user = JSON.parse(localStorage.getItem("user"));
   const handleSearch = (e) => {
     e.preventDefault();
 
-    dispatch(taskAction.search(searchString));
+    dispatch(taskAction.search(user.id, searchString));
   };
 
   return (

@@ -2,10 +2,10 @@ import api from "./api";
 
 const TASK_BASE_URL = "Tasks";
 
-export const getTasks = async () => {
+export const getTasks = async (userId) => {
   let data;
   await api
-    .get(TASK_BASE_URL)
+    .get(`Users/${userId}/tasks`)
     .then((res) => {
       data = res;
     })
@@ -33,10 +33,10 @@ export const getTask = async (id) => {
   return response;
 };
 
-export const search = async (searchString) => {
+export const search = async (userId, searchString) => {
   let response;
   await api
-    .get(`${TASK_BASE_URL}/s/${searchString}`)
+    .get(`Users/${userId}/tasks/${searchString}`)
     .then((res) => {
       response = res;
     })
