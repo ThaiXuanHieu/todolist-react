@@ -2,10 +2,30 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { login } from "../../actions/userAction";
 import { Link } from "react-router-dom";
+import Form from "react-validation/build/form";
+import Input from "react-validation/build/input";
+import Button from "react-validation/build/button";
+import validator from "validator";
+
+// validator
+const required = (value) => {
+  if (!value.toString().trim().length) {
+    // We can return string or jsx as the 'error' prop for the validated Component
+    return <span className="text-danger">This field is required</span>;
+  }
+};
+
+const mail = (value) => {
+  if (!validator.isEmail(value)) {
+    return <span className="text-danger">Email invalid</span>;
+  }
+};
+
 const LoginForm = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
+
   function handleSubmit(e) {
     e.preventDefault();
     dispatch(login(email, password))
@@ -21,23 +41,25 @@ const LoginForm = (props) => {
     <div className="container">
       <h1 className="text-center mb-5">Login</h1>
       <div className="d-flex justify-content-center">
-        <form onSubmit={handleSubmit}>
+        <Form onSubmit={handleSubmit}>
           <div className="form-group">
             <label>Email:</label>
-            <input
+            <Input
               type="email"
               className="form-control"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              validations={[mail, required]}
             />
           </div>
           <div className="form-group">
             <label>Mật khẩu:</label>
-            <input
+            <Input
               type="password"
               className="form-control"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              validations={[required]}
             />
           </div>
           <div className="form-group form-check">
@@ -45,13 +67,13 @@ const LoginForm = (props) => {
               <input className="form-check-input" type="checkbox" /> Remember me
             </label>
           </div>
-          <button className="btn btn-primary w-100" onClick={handleSubmit}>
+          <Button className="btn btn-primary w-100" onClick={handleSubmit}>
             Login
-          </button>
+          </Button>
           <div className="mt-3">
             <Link to={"/register"}>Register now</Link>
           </div>
-        </form>
+        </Form>
       </div>
     </div>
   );
