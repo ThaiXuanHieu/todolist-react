@@ -1,3 +1,73 @@
+.task-page {
+    background-color: #f4f4f4;
+}
+
+.input-title, .input-step, .input-note, .input-detailTask {
+    border: none;
+    outline: none;
+    padding: 10px;
+    width: 100%;
+}
+
+textarea {
+    resize: none;
+}
+
+.btn-taskItem {
+    width: 100%;
+    border: none;
+    outline: none;
+    background-color: white;
+    padding: 10px;
+    border-bottom: 1px solid #f4f4f4;
+    color: #4f4f50;
+    margin: 10px 0px;
+}
+
+.step-item {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #f4f4f4;
+}
+
+.btn-deleteStep {
+    border: none;
+    outline: none;
+    background-color: transparent;
+    position: absolute;
+    right: 15px;
+}
+
+.btn-deleteStep span {
+    color: #b3b3b4;
+}
+
+.btn-taskItem:hover {
+    background-color: #f4f4f4;
+}
+
+.box-item-right {
+    margin: 10px;
+}
+
+.dueDate {
+    position: absolute;
+    right: 20px;
+    font-size: 13px;
+}
+
+.btn-toolBar {
+    outline: none;
+    border: none;
+    background-color: transparent;
+    color: #3e69e4;
+}
+
+.btn-toolBar span {
+    margin-bottom: -5px;
+}
+
 .taskItem {
     border-bottom: 1px solid dodgerblue;
     margin-bottom: 20px;

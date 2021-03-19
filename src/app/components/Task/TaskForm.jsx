@@ -1,20 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import * as taskAction from "../../actions/taskAction";
-import { FormatDateInput } from "../../utils/formatDate";
+import './style.css'
 
 const TaskForm = (props) => {
   const [id, setId] = useState(0);
   const [title, setTitle] = useState("");
-  const [dueDate, setDueDate] = useState("");
-  const [isComplete, setIsComplete] = useState(false);
   const dispatch = useDispatch();
-  useEffect(() => {
-    setId(props.task.id);
-    setTitle(props.task.title);
-    setDueDate(FormatDateInput(props.task.dueDate));
-    setIsComplete(props.task.isComplete);
-  }, [props, props.task]);
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -24,8 +16,6 @@ const TaskForm = (props) => {
     const task = {
       id: id,
       title: title,
-      dueDate: dueDate,
-      isComplete: isComplete,
       createdBy: user.id
     };
     
@@ -34,7 +24,6 @@ const TaskForm = (props) => {
         .then(() => {
           setId(0);
           setTitle("");
-          setDueDate("");
         })
         .catch((err) => {
           console.log(err);
@@ -44,7 +33,6 @@ const TaskForm = (props) => {
         .then(() => {
           setId(0);
           setTitle("");
-          setDueDate("");
         })
         .catch((err) => {
           console.log(err);
@@ -55,28 +43,26 @@ const TaskForm = (props) => {
   return (
     <form onSubmit={handleSubmit}>
       <div className="form-group">
-        <label>Add new task</label>
         <input
           type="text"
           value={title || ""}
           onChange={(e) => setTitle(e.target.value)}
-          className="form-control"
-          placeholder="Title"
+          className="input-title"
+          placeholder="Add task"
         />
       </div>
-      <div className="form-group">
-        <label>Due Date</label>
+      {/* <div className="form-group">
         <input
           type="date"
           value={dueDate || ""}
           onChange={(e) => setDueDate(e.target.value)}
-          className="form-control"
+          className="input-dueDate"
           placeholder="Due Date"
         />
-      </div>
-      <button className="btn btn-success" onClick={handleSubmit}>
+      </div> */}
+      {/* <button className="btn btn-success" onClick={handleSubmit}>
         Save
-      </button>
+      </button> */}
     </form>
   );
 };

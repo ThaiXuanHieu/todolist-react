@@ -8,31 +8,34 @@ import { GetDate } from "../../utils/formatDate";
 const TaskList = (props) => {
   const dispatch = useDispatch();
 
-  const handleDelete = (id) => {
-    dispatch(taskAction.remove(id));
-  };
+  // const handleDelete = (id) => {
+  //   dispatch(taskAction.remove(id));
+  // };
 
-  const handleUpdate = (id) => {
-    dispatch(taskAction.getTask(id));
-  };
+  // const handleUpdate = (id) => {
+  //   dispatch(taskAction.getTask(id));
+  // };
 
   const handleChange = (id, isComplete) => {
     isComplete = !isComplete;
     dispatch(taskAction.updateStatus(id, isComplete));
   };
 
-  const [searchString, setSearchString] = useState("");
-  const user = JSON.parse(localStorage.getItem("user"));
-  const handleSearch = (e) => {
-    e.preventDefault();
-
-    dispatch(taskAction.search(user.id, searchString));
+  const loadTaskDetail = (id) => {
+    dispatch(taskAction.getTask(id));
   };
+
+  // const [searchString, setSearchString] = useState("");
+  // const user = JSON.parse(localStorage.getItem("user"));
+  // const handleSearch = (e) => {
+  //   e.preventDefault();
+
+  //   dispatch(taskAction.search(user.id, searchString));
+  // };
 
   return (
     <div>
-      <h6 className="mt-5">List Task</h6>
-      <div className="col-md-6 float-right pr-0">
+      {/* <div className="col-md-6 float-right pr-0">
         <form onSubmit={handleSearch}>
           <div className="input-group mb-3">
             <input
@@ -47,50 +50,32 @@ const TaskList = (props) => {
             </div>
           </div>
         </form>
-      </div>
-      <table className="table table-bordered table-striped">
-        <thead>
-          <tr>
-            <th></th>
-            <th>Title</th>
-            <th>Due Date</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          {!!props.tasks &&
-            props.tasks.map((item) => (
-              <tr key={item.id}>
-                <td>
-                  <input
-                    type="checkbox"
-                    className="mr-3"
-                    title="Đánh dấu là đã hoàn thành"
-                    checked={item.isComplete}
-                    onChange={() => handleChange(item.id, item.isComplete)}
-                  />
-                </td>
-                <td>{item.title}</td>
-                <td>{GetDate(item.dueDate)}</td>
-                <td>
-                  <button className="btn btn-info">Thêm bước</button>
-                  <button
-                    className="btn btn-warning"
-                    onClick={() => handleUpdate(item.id)}
-                  >
-                    Sửa
-                  </button>
-                  <button
-                    className="btn btn-danger"
-                    onClick={() => handleDelete(item.id)}
-                  >
-                    Xóa
-                  </button>
-                </td>
-              </tr>
-            ))}
-        </tbody>
-      </table>
+      </div> */}
+
+      {!!props.tasks &&
+        props.tasks.map((item) => (
+          <button
+            key={item.id}
+            className="btn-taskItem d-flex align-items-center"
+            onClick={() => loadTaskDetail(item.id)}
+          >
+            <input
+              type="checkbox"
+              className="mr-3"
+              title="Đánh dấu là đã hoàn thành"
+              checked={item.isComplete}
+              onChange={() => handleChange(item.id, item.isComplete)}
+            />
+            {item.isComplete ? (
+              <del className="title">{item.title}</del>
+            ) : (
+              <span className="title">{item.title}</span>
+            )}
+            <span className="dueDate">
+              {!item.dueDate ? item.dueDate : GetDate(item.dueDate)}
+            </span>
+          </button>
+        ))}
     </div>
   );
 };
