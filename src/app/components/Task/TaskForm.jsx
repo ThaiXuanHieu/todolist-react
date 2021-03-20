@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import * as taskAction from "../../actions/taskAction";
-import './style.css'
+import "./style.css";
 
 const TaskForm = (props) => {
   const [id, setId] = useState(0);
@@ -12,32 +12,23 @@ const TaskForm = (props) => {
     e.preventDefault();
 
     const user = JSON.parse(localStorage.getItem("user"));
-    
+    if (title === "") {
+      return;
+    }
     const task = {
       id: id,
       title: title,
-      createdBy: user.id
+      createdBy: user.id,
     };
-    
-    if (!id) {
-      dispatch(taskAction.create(task))
-        .then(() => {
-          setId(0);
-          setTitle("");
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    } else {
-      dispatch(taskAction.update(task))
-        .then(() => {
-          setId(0);
-          setTitle("");
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    }
+
+    dispatch(taskAction.create(task))
+      .then(() => {
+        setId(0);
+        setTitle("");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   return (
@@ -51,18 +42,6 @@ const TaskForm = (props) => {
           placeholder="Add task"
         />
       </div>
-      {/* <div className="form-group">
-        <input
-          type="date"
-          value={dueDate || ""}
-          onChange={(e) => setDueDate(e.target.value)}
-          className="input-dueDate"
-          placeholder="Due Date"
-        />
-      </div> */}
-      {/* <button className="btn btn-success" onClick={handleSubmit}>
-        Save
-      </button> */}
     </form>
   );
 };

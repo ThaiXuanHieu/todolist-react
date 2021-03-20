@@ -4,6 +4,7 @@ export const TASK_ACTION_TYPES = {
   CREATE: "TASK/CREATE",
   UPDATE: "TASK/UPDATE",
   UPDATE_STATUS: "TASK/UPDATE_STATUS",
+  UPDATE_TITLE: "TASK/UPDATE_TITLE",
   DELETE: "TASK/DELETE",
   GET_ALL: "TASK/GET_ALL",
   SEARCH: "TASK/SEARCH",
@@ -89,22 +90,6 @@ export const update = (updateTask) => (dispatch) => {
         payload: error,
       });
       //return Promise.reject();
-    });
-};
-
-export const updateStatus = (id, isComplete) => (dispatch) => {
-  return TaskService.updateStatus(id, isComplete)
-    .then((response) => {
-      dispatch({
-        type: TASK_ACTION_TYPES.UPDATE_STATUS,
-        payload: response.data,
-      });
-    })
-    .catch((error) => {
-      dispatch({
-        type: "ERROR",
-        payload: error,
-      });
     });
 };
 

@@ -2,25 +2,41 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Icon } from "@material-ui/core";
 import * as stepAction from "../../actions/stepAction";
+import * as taskAction from "../../actions/taskAction";
 const TaskDetail = (props) => {
+  // eslint-disable-next-line no-unused-vars
   const { list, task } = useSelector((state) => state.task);
   const dispatch = useDispatch();
-  const [title, setTitle] = useState("");
+  const [titleTask, setTitleTask] = useState("");
+  const [titleStep, setTitleStep] = useState("");
 
   useEffect(() => {
-    setTitle(task.title);
+    setTitleTask(task.title);
   }, [task.title]);
+
+  const handleUpdateTask = (e) => {
+    e.preventDefault();
+    task.title = titleTask;
+    dispatch(taskAction.update(task));
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const step = {
-        title: title,
-        taskId: task.id
+    if (titleStep === "") {
+      return;
     }
+    const step = {
+      title: titleStep,
+      taskId: task.id,
+    };
     dispatch(stepAction.create(step));
   };
 
-  const handleChange = (id, isComplete) => {};
+  const handleChangeStatusStep = (step) => {};
+  const handleChangeStatusTask = (task) => {
+    task.isComplete = !task.isComplete;
+    dispatch(taskAction.update(task));
+  };
 
   return (
     <div>
@@ -33,16 +49,26 @@ const TaskDetail = (props) => {
             type="checkbox"
             className="mr-3"
             title="Đánh dấu là đã hoàn thành"
+            checked={task.isComplete}
+            onChange={() => handleChangeStatusTask(task)}
           />
-          <input
-            type="text"
-            className="input-detailTask"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-          />
+          <form onSubmit={handleUpdateTask}>
+            <input
+              type="text"
+              className="input-detailTask font-weight-bold"
+              value={titleTask || ""}
+              onChange={(e) => setTitleTask(e.target.value)}
+            />
+          </form>
         </div>
         <form onSubmit={handleSubmit}>
-          <input type="text" className="input-step" placeholder="Add step" />
+          <input
+            type="text"
+            className="input-step"
+            placeholder="Add step"
+            value={titleStep || ""}
+            onChange={(e) => setTitleStep(e.target.value)}
+          />
         </form>
         <div style={{ color: "#4f4f50" }}>
           {!!task.steps &&
@@ -53,7 +79,7 @@ const TaskDetail = (props) => {
                   className="mr-3"
                   title="Đánh dấu là đã hoàn thành"
                   checked={item.isComplete}
-                  onChange={() => handleChange(item.id, item.isComplete)}
+                  onChange={() => handleChangeStatusStep(item)}
                 />
                 <span>{item.title}</span>
                 <button className="btn-deleteStep">

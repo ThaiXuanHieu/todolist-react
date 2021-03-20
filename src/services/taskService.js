@@ -93,28 +93,12 @@ export const remove = async (id) => {
   return response;
 };
 
-export const updateStatus = async (id, isComplete) => {
-  let response = null;
-  await api
-    .patch(`${TASK_BASE_URL}/${id}/${isComplete}`)
-    .then((res) => {
-      response = res;
-    })
-    .catch((error) => {
-      if (error.response) {
-        response = error.response;
-      }
-    });
-  return response;
-};
-
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
   getTasks,
   getTask,
   create,
   remove,
-  updateStatus,
   update,
-  search
+  search,
 };
