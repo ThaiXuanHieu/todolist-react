@@ -5,7 +5,7 @@ const TASK_BASE_URL = "Tasks";
 export const getTasks = async (userId) => {
   let data;
   await api
-    .get(`Users/${userId}/tasks`)
+    .get(`${TASK_BASE_URL}/${userId}/tasks`)
     .then((res) => {
       data = res;
     })
@@ -36,7 +36,7 @@ export const getTask = async (id) => {
 export const search = async (userId, searchString) => {
   let response;
   await api
-    .get(`Users/${userId}/tasks/${searchString}`)
+    .get(`${TASK_BASE_URL}/${userId}/tasks/${searchString}`)
     .then((res) => {
       response = res;
     })
