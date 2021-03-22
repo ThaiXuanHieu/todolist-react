@@ -31,9 +31,7 @@ export const task = (state = initialState, action) => {
         list: state.list.map((x) =>
           x.id === action.payload.id ? action.payload : x
         ),
-        task: state.list.find((x) =>
-          x.id === action.payload.id
-        ),
+        task: action.payload,
       };
 
     case TASK_ACTION_TYPES.GET_BY_ID:

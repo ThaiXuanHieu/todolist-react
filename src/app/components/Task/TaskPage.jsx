@@ -9,6 +9,7 @@ import TaskDetail from "./TaskDetail";
 import { Icon } from "@material-ui/core";
 
 const TaskPage = (props) => {
+  // eslint-disable-next-line no-unused-vars
   const { list, task } = useSelector((state) => state.task);
   const dispatch = useDispatch();
 
@@ -40,7 +41,7 @@ const TaskPage = (props) => {
                 <Icon>sort</Icon> Sort
               </button>
             </div>
-            <TaskForm task={task} />
+            <TaskForm />
             <TaskList tasks={list} />
           </div>
           <div className="col-right col-md-3 p-0">

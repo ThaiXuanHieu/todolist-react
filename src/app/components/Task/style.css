@@ -14,12 +14,9 @@ textarea {
 }
 
 .btn-taskItem {
-    width: 100%;
     border: none;
     outline: none;
-    background-color: white;
-    padding: 10px;
-    border-bottom: 1px solid #f4f4f4;
+    background-color: transparent;
     color: #4f4f50;
     margin: 10px 0px;
 }
@@ -43,7 +40,12 @@ textarea {
     color: #b3b3b4;
 }
 
-.btn-taskItem:hover {
+.taskItem {
+    padding: 5px 10px;
+    border-bottom: 1px solid #f4f4f4;
+}
+
+.taskItem:hover {
     background-color: #f4f4f4;
 }
 
@@ -66,10 +68,4 @@ textarea {
 
 .btn-toolBar span {
     margin-bottom: -5px;
-}
-
-.taskItem {
-    border-bottom: 1px solid dodgerblue;
-    margin-bottom: 20px;
-    padding-bottom: 5px;
 }

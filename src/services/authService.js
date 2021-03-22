@@ -31,7 +31,6 @@ const register = async (newUser) => {
     })
     .catch((error) => {
       if (error.response) {
-        console.log(error.response)
         response = error.response;
       }
     });

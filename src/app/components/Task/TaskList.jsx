@@ -11,8 +11,6 @@ const TaskList = (props) => {
   const handleChange = (task) => {
     task.isComplete = !task.isComplete;
     dispatch(taskAction.update(task));
-    
-    console.log(task);
   };
 
   const loadTaskDetail = (id) => {
@@ -23,11 +21,7 @@ const TaskList = (props) => {
     <div>
       {!!props.tasks &&
         props.tasks.map((item) => (
-          <button
-            key={item.id}
-            className="btn-taskItem d-flex align-items-center"
-            onClick={() => loadTaskDetail(item.id)}
-          >
+          <div key={item.id} className="taskItem d-flex align-items-center">
             <input
               type="checkbox"
               className="mr-3"
@@ -35,15 +29,20 @@ const TaskList = (props) => {
               checked={item.isComplete}
               onChange={() => handleChange(item)}
             />
-            {item.isComplete ? (
-              <del className="title">{item.title}</del>
-            ) : (
-              <span className="title">{item.title}</span>
-            )}
+            <button
+              className="btn-taskItem"
+              onClick={() => loadTaskDetail(item.id)}
+            >
+              {item.isComplete ? (
+                <del className="title">{item.title}</del>
+              ) : (
+                <span className="title">{item.title}</span>
+              )}
+            </button>
             <span className="dueDate">
               {!item.dueDate ? item.dueDate : GetDate(item.dueDate)}
             </span>
-          </button>
+          </div>
         ))}
     </div>
   );

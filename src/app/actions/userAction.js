@@ -29,14 +29,12 @@ export const login = (email, password) => (dispatch) => {
 export const register = (newUser) => (dispatch) => {
   return UserService.register(newUser)
     .then((response) => {
-      console.log(response.data);
       dispatch({
         type: USER_ACTION_TYPES.REGISTER,
         payload: response.data,
       });
     })
     .catch((error) => {
-      console.log(error);
       dispatch({
         type: "ERROR",
         payload: error,
