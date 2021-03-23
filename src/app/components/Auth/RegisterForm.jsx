@@ -54,7 +54,7 @@ const RegisterForm = (props) => {
         props.history.push("/task");
       })
       .catch(() => {
-        console.log("Lỗi hệ thống");
+        console.log("System error");
       });
   }
 
@@ -65,7 +65,7 @@ const RegisterForm = (props) => {
         <div className="d-flex justify-content-center">
           <Form onSubmit={handleSubmit}>
             <div className="form-group">
-              <label>Họ:</label>
+              <label>FirstName:</label>
               <Input
                 type="text"
                 className="form-control"
@@ -75,7 +75,7 @@ const RegisterForm = (props) => {
               />
             </div>
             <div className="form-group">
-              <label>Tên:</label>
+              <label>LastName:</label>
               <Input
                 type="text"
                 className="form-control"
@@ -85,7 +85,7 @@ const RegisterForm = (props) => {
               />
             </div>
             <div className="form-group">
-              <label>Tên đăng nhập:</label>
+              <label>UserName:</label>
               <Input
                 type="text"
                 className="form-control"
@@ -105,7 +105,7 @@ const RegisterForm = (props) => {
               />
             </div>
             <div className="form-group">
-              <label>Mật khẩu:</label>
+              <label>Password:</label>
               <Input
                 type="password"
                 className="form-control"
@@ -116,7 +116,7 @@ const RegisterForm = (props) => {
               />
             </div>
             <div className="form-group">
-              <label>Xác nhận mật khẩu:</label>
+              <label>Confirm Password:</label>
               <Input
                 type="password"
                 className="form-control"

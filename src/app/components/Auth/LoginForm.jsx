@@ -33,7 +33,7 @@ const LoginForm = (props) => {
         props.history.push("/task");
       })
       .catch(() => {
-        console.log("Lỗi hệ thống");
+        console.log("System error");
       });
   }
 
@@ -53,7 +53,7 @@ const LoginForm = (props) => {
             />
           </div>
           <div className="form-group">
-            <label>Mật khẩu:</label>
+            <label>Password:</label>
             <Input
               type="password"
               className="form-control"
