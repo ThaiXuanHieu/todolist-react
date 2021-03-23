@@ -47,12 +47,29 @@ export const update = async (step) => {
       }
     });
 
-    return data;
+  return data;
+};
+
+export const remove = async (id) => {
+  let data;
+  await api
+    .delete(`${STEP_BASE_URL}/${id}`)
+    .then((res) => {
+      data = res;
+    })
+    .catch((error) => {
+      if (error.response) {
+        data = error.response;
+      }
+    });
+
+  return data;
 };
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
   create,
   update,
+  remove,
   getByTaskId,
 };

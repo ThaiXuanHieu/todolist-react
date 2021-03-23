@@ -56,3 +56,19 @@ export const update = (step) => (dispatch) => {
       });
     });
 };
+
+export const remove = (id) => (dispatch) => {
+  return StepService.remove(id)
+    .then((response) => {
+      dispatch({
+        type: STEP_ACTION_TYPES.DELETE,
+        payload: response.data,
+      });
+    })
+    .catch((error) => {
+      dispatch({
+        type: "ERROR",
+        payload: error,
+      });
+    });
+};

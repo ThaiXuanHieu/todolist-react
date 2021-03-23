@@ -32,6 +32,12 @@ export const step = (state = initialState, action) => {
         ),
       };
 
+    case STEP_ACTION_TYPES.DELETE:
+      return {
+        ...state,
+        list: state.list.filter((x) => x.id !== action.payload),
+      };
+      
     default:
       return state;
   }

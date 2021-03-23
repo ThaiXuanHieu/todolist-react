@@ -29,6 +29,10 @@ const StepItem = (props) => {
     dispatch(stepAction.update(step));
   };
 
+  const handleDelete = (id) => {
+    dispatch(stepAction.remove(id));
+  };
+
   return (
     <div className="step-item">
       <input
@@ -56,7 +60,10 @@ const StepItem = (props) => {
           />
         )}
       </form>
-      <button className="btn-deleteStep">
+      <button
+        className="btn-deleteStep"
+        onClick={() => handleDelete(props.step.id)}
+      >
         <Icon>close</Icon>
       </button>
     </div>
