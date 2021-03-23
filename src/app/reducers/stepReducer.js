@@ -15,12 +15,13 @@ export const step = (state = initialState, action) => {
     case STEP_ACTION_TYPES.CREATE:
       return {
         ...state,
-        list: [state.list, action.payload],
+        list: [...state.list, action.payload],
       };
 
-    case STEP_ACTION_TYPES.GET_BY_ID:
+    case STEP_ACTION_TYPES.GET_BY_TASKID:
       return {
-        
+        ...state,
+        list: [...action.payload],
       };
 
     default:

@@ -2,7 +2,7 @@
     background-color: #f4f4f4;
 }
 
-.input-title, .input-step, .input-note, .input-detailTask {
+.input-title, .input-step, .input-note, .input-detailTask, .step-title {
     border: none;
     outline: none;
     padding: 10px;
