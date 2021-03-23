@@ -34,8 +34,25 @@ export const getByTaskId = async (taskId) => {
   return data;
 };
 
+export const update = async (step) => {
+  let data;
+  await api
+    .put(`${STEP_BASE_URL}/${step.id}`, step)
+    .then((res) => {
+      data = res;
+    })
+    .catch((error) => {
+      if (error.response) {
+        data = error.response;
+      }
+    });
+
+    return data;
+};
+
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
   create,
+  update,
   getByTaskId,
 };

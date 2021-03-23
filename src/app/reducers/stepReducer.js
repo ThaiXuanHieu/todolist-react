@@ -24,6 +24,14 @@ export const step = (state = initialState, action) => {
         list: [...action.payload],
       };
 
+    case STEP_ACTION_TYPES.UPDATE:
+      return {
+        ...state,
+        list: state.list.map((x) =>
+          x.id === action.payload.id ? action.payload : x
+        ),
+      };
+
     default:
       return state;
   }

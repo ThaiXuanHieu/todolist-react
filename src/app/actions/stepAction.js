@@ -40,3 +40,19 @@ export const getByTaskId = (taskId) => (dispatch) => {
       });
     });
 };
+
+export const update = (step) => (dispatch) => {
+  return StepService.update(step)
+    .then((response) => {
+      dispatch({
+        type: STEP_ACTION_TYPES.UPDATE,
+        payload: response.data,
+      });
+    })
+    .catch((error) => {
+      dispatch({
+        type: "ERROR",
+        payload: error,
+      });
+    });
+};
