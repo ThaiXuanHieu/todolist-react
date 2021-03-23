@@ -38,7 +38,7 @@ const TaskDetail = (props) => {
             checked={task.isComplete}
             onChange={() => handleChangeStatusTask(task)}
           />
-          <form onSubmit={handleUpdateTask}>
+          <form onSubmit={handleUpdateTask} style={{width: "100%"}}>
             <input
               type="text"
               className="input-detailTask font-weight-bold"
