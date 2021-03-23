@@ -19,6 +19,8 @@ textarea {
     background-color: transparent;
     color: #4f4f50;
     margin: 10px 0px;
+    width: 100%;
+    text-align: start;
 }
 
 .step-item {

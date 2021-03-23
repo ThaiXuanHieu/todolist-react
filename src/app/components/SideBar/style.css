@@ -1,3 +1,9 @@
+.sidebar-link {
+    text-decoration: none;
+    color: #4f4f50;
+    display: inherit;
+}
+
 .sidebar {
     list-style-type: none;
     margin: 0;

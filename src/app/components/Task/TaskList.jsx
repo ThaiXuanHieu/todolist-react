@@ -17,10 +17,18 @@ const TaskList = (props) => {
     dispatch(taskAction.getTask(id));
   };
 
-  return (
-    <div>
-      {!!props.tasks &&
-        props.tasks.map((item) => (
+  const renderTasks = () => {
+    const taskCompleted = props.tasks.filter(
+      (item) => item.isComplete === true
+    );
+
+    const taskInComplete = props.tasks.filter(
+      (item) => item.isComplete === false
+    );
+
+    return (
+      <div>
+        {taskInComplete.map((item) => (
           <div key={item.id} className="taskItem d-flex align-items-center">
             <input
               type="checkbox"
@@ -33,19 +41,39 @@ const TaskList = (props) => {
               className="btn-taskItem"
               onClick={() => loadTaskDetail(item.id)}
             >
-              {item.isComplete ? (
-                <del className="title">{item.title}</del>
-              ) : (
-                <span className="title">{item.title}</span>
-              )}
+              <span className="title">{item.title}</span>
             </button>
             <span className="dueDate">
               {!item.dueDate ? item.dueDate : GetDate(item.dueDate)}
             </span>
           </div>
         ))}
-    </div>
-  );
+        <h6 style={{marginTop: "15px"}}>Đã hoàn thành</h6>
+        {taskCompleted.map((item) => (
+          <div key={item.id} className="taskItem d-flex align-items-center">
+            <input
+              type="checkbox"
+              className="mr-3"
+              title="Đánh dấu là đã hoàn thành"
+              checked={item.isComplete}
+              onChange={() => handleChange(item)}
+            />
+            <button
+              className="btn-taskItem"
+              onClick={() => loadTaskDetail(item.id)}
+            >
+              <del className="title">{item.title}</del>
+            </button>
+            <span className="dueDate">
+              {!item.dueDate ? item.dueDate : GetDate(item.dueDate)}
+            </span>
+          </div>
+        ))}
+      </div>
+    );
+  };
+
+  return <div>{renderTasks()}</div>;
 };
 
 export default TaskList;
