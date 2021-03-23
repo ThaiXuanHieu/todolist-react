@@ -10,6 +10,9 @@ const StepItem = (props) => {
 
   const handleUpdate = (e) => {
     e.preventDefault();
+    if(stepTitle === ""){
+      return;
+    }
   };
 
   const handleChangeStatusStep = (step) => {};

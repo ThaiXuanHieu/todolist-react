@@ -4,8 +4,16 @@ import * as stepAction from "../../actions/stepAction";
 import StepItem from "./StepItem";
 
 const Step = (props) => {
+  const { taskId } = props;
+  const { list } = useSelector((state) => state.step);
   const [titleStep, setTitleStep] = useState("");
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (taskId) {
+      dispatch(stepAction.getByTaskId(taskId));
+    }
+  }, [dispatch, taskId]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -14,7 +22,7 @@ const Step = (props) => {
     }
     const step = {
       title: titleStep,
-      taskId: props.taskId,
+      taskId: taskId,
     };
 
     dispatch(stepAction.create(step));
@@ -33,8 +41,7 @@ const Step = (props) => {
         />
       </form>
       <div style={{ color: "#4f4f50" }}>
-        {!!props.steps &&
-          props.steps.map((item) => <StepItem key={item.id} step={item} />)}
+        {!!list && list.map((item) => <StepItem key={item.id} step={item} />)}
       </div>
     </div>
   );
