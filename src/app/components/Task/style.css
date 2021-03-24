@@ -23,6 +23,11 @@ textarea {
     text-align: start;
 }
 
+.step-completed {
+    margin: 0;
+    font-size: 12px;
+}
+
 .step-item {
     display: flex;
     align-items: center;

@@ -21,6 +21,7 @@ const TaskList = (props) => {
     const taskCompleted = props.tasks.filter(
       (item) => item.isComplete === true
     );
+    console.log(taskCompleted);
 
     const taskInComplete = props.tasks.filter(
       (item) => item.isComplete === false
@@ -42,13 +43,21 @@ const TaskList = (props) => {
               onClick={() => loadTaskDetail(item.id)}
             >
               <span className="title">{item.title}</span>
+              {item.steps.length > 0 ? (
+                <p className="step-completed">
+                  {item.steps.filter((x) => x.isComplete === true).length + " "}
+                  trên {item.steps.length}
+                </p>
+              ) : (
+                ""
+              )}
             </button>
             <span className="dueDate">
               {!item.dueDate ? item.dueDate : GetDate(item.dueDate)}
             </span>
           </div>
         ))}
-        <h6 style={{marginTop: "15px"}}>Đã hoàn thành</h6>
+        <h6 style={{ marginTop: "15px" }}>Đã hoàn thành</h6>
         {taskCompleted.map((item) => (
           <div key={item.id} className="taskItem d-flex align-items-center">
             <input
@@ -63,6 +72,14 @@ const TaskList = (props) => {
               onClick={() => loadTaskDetail(item.id)}
             >
               <del className="title">{item.title}</del>
+              {item.steps.length > 0 ? (
+                <p className="step-completed">
+                  {item.steps.filter((x) => x.isComplete === true).length + " "}
+                  trên {item.steps.length}
+                </p>
+              ) : (
+                ""
+              )}
             </button>
             <span className="dueDate">
               {!item.dueDate ? item.dueDate : GetDate(item.dueDate)}
