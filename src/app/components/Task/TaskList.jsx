@@ -21,7 +21,6 @@ const TaskList = (props) => {
     const taskCompleted = props.tasks.filter(
       (item) => item.isComplete === true
     );
-    console.log(taskCompleted);
 
     const taskInComplete = props.tasks.filter(
       (item) => item.isComplete === false
