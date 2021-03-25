@@ -62,7 +62,7 @@ export const remove = (id) => (dispatch) => {
     .then((response) => {
       dispatch({
         type: STEP_ACTION_TYPES.DELETE,
-        payload: response.data,
+        payload: id,
       });
     })
     .catch((error) => {
