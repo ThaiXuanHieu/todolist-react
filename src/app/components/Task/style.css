@@ -118,6 +118,10 @@ textarea {
     text-align: left;
     transition: opacity 250ms ease !important;
   }
+
+  .react-contextmenu-wrapper {
+    width: 100%;
+  }
   
   .react-contextmenu.react-contextmenu--visible {
     opacity: 1;
