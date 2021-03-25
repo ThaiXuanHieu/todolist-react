@@ -2,16 +2,24 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import * as taskAction from "../../actions/taskAction";
 import Step from "../Step/Step";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import "./style.css";
+import { FormatDateInput } from "../../utils/formatDate";
 
 const TaskDetail = (props) => {
   // eslint-disable-next-line no-unused-vars
   const { list, task } = useSelector((state) => state.task);
   const dispatch = useDispatch();
   const [titleTask, setTitleTask] = useState("");
+  const [dueDate, setDueDate] = useState();
 
   useEffect(() => {
     setTitleTask(task.title);
-  }, [task.title]);
+    task.dueDate
+      ? setDueDate(new Date(FormatDateInput(task.dueDate)))
+      : setDueDate(new Date());
+  }, [task.dueDate, task.title]);
 
   const handleUpdateTask = (e) => {
     e.preventDefault();
@@ -38,7 +46,7 @@ const TaskDetail = (props) => {
             checked={task.isComplete}
             onChange={() => handleChangeStatusTask(task)}
           />
-          <form onSubmit={handleUpdateTask} style={{width: "100%"}}>
+          <form onSubmit={handleUpdateTask} style={{ width: "100%" }}>
             <input
               type="text"
               className="input-detailTask font-weight-bold"
@@ -49,7 +57,14 @@ const TaskDetail = (props) => {
         </div>
         <Step steps={task.steps} taskId={task.id} />
       </div>
-      <div className="box-item-right update-dueDate p-2 bg-white"></div>
+      <div className="box-item-right update-dueDate p-2 bg-white">
+        <div className="date-picler-custom">
+          <DatePicker
+            selected={dueDate}
+            onChange={(date) => setDueDate(date)}
+          />
+        </div>
+      </div>
       <div className="box-item-right note p-2 bg-white">
         <form>
           <textarea className="input-note"></textarea>
