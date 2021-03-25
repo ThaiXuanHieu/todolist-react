@@ -70,7 +70,7 @@ const TaskList = (props) => {
             </span>
           </div>
         ))}
-        {!!taskCompleted.length && (<h6 style={{ marginTop: "15px" }}>Đã hoàn thành</h6>)}
+        {!!taskCompleted.length && (<h6 style={{ marginTop: "15px", marginLeft: "10px" }}>Đã hoàn thành</h6>)}
         {taskCompleted.map((item) => (
           <div key={item.id} className="taskItem d-flex align-items-center">
             <input
