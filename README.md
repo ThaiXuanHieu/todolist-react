@@ -1,4 +1,5 @@
-![todolist](https://user-images.githubusercontent.com/48479522/112420046-16de2980-8d5f-11eb-9a42-17750e68d49d.png)
+![todolist](https://user-images.githubusercontent.com/48479522/112452016-ba8fff80-8d88-11eb-88ed-0700bcf9a045.png)
+
 # Installation
 
 Step 1. Clone the todolist-react repository from github:
