@@ -2,13 +2,28 @@ import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Icon } from "@material-ui/core";
 import * as stepAction from "../../actions/stepAction";
+import Dialog from "@material-ui/core/Dialog";
+import DialogActions from "@material-ui/core/DialogActions";
+import DialogContent from "@material-ui/core/DialogContent";
+import DialogContentText from "@material-ui/core/DialogContentText";
+import DialogTitle from "@material-ui/core/DialogTitle";
+
 const StepItem = (props) => {
   const [stepTitle, setStepTitle] = useState("");
+  const [open, setOpen] = React.useState(false);
   const dispatch = useDispatch();
 
   useEffect(() => {
     setStepTitle(props.step.title);
   }, [props.step.title]);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   const handleUpdate = (e) => {
     e.preventDefault();
@@ -31,6 +46,7 @@ const StepItem = (props) => {
 
   const handleDelete = (id) => {
     dispatch(stepAction.remove(id));
+    setOpen(false);
   };
 
   return (
@@ -60,12 +76,35 @@ const StepItem = (props) => {
           />
         )}
       </form>
-      <button
-        className="btn-deleteStep"
-        onClick={() => handleDelete(props.step.id)}
-      >
+      <button className="btn-deleteStep" onClick={handleClickOpen}>
         <Icon>close</Icon>
       </button>
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">
+          "{props.step.title}" will be permanently deleted.
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            You will not be able to undo this action.
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <button onClick={handleClose} className="btn btn-default">
+            Cancel
+          </button>
+          <button
+            onClick={() => handleDelete(props.step.id)}
+            className="btn btn-danger"
+          >
+            Delete task
+          </button>
+        </DialogActions>
+      </Dialog>
     </div>
   );
 };
