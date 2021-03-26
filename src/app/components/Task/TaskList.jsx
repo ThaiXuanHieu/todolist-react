@@ -5,10 +5,29 @@ import "./style.css";
 import { GetDate } from "../../utils/formatDate";
 import Icon from "@material-ui/core/Icon";
 import { ContextMenu, MenuItem, ContextMenuTrigger } from "react-contextmenu";
+import Dialog from "@material-ui/core/Dialog";
+import DialogActions from "@material-ui/core/DialogActions";
+import DialogContent from "@material-ui/core/DialogContent";
+import DialogContentText from "@material-ui/core/DialogContentText";
+import DialogTitle from "@material-ui/core/DialogTitle";
 
 const TaskList = (props) => {
-  const [currentTaskId, setCurrentTaskId] = useState(0);
+  const [currentTask, setCurrentTask] = useState({
+    taskId: 0,
+    title: "",
+  });
+
+  const [open, setOpen] = React.useState(false);
+
   const dispatch = useDispatch();
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   const handleChange = (task) => {
     task.isComplete = !task.isComplete;
@@ -18,13 +37,17 @@ const TaskList = (props) => {
   const loadTaskDetail = (id) => {
     dispatch(taskAction.getTask(id));
   };
-  const handleClick = (e, data) => {
-    dispatch(taskAction.remove(data.taskId));
+  const handleClickDelete = (id) => {
+    dispatch(taskAction.remove(id));
+    setOpen(false);
   };
 
-  const handleRightClick = (e, taskId) => {
+  const handleRightClick = (e, task) => {
     e.preventDefault();
-    setCurrentTaskId(taskId);
+    setCurrentTask({
+      taskId: task.id,
+      title: task.title,
+    });
   };
 
   const renderTasks = () => {
@@ -51,7 +74,7 @@ const TaskList = (props) => {
               <button
                 className="btn-taskItem"
                 onClick={() => loadTaskDetail(item.id)}
-                onContextMenu={(e) => handleRightClick(e, item.id)}
+                onContextMenu={(e) => handleRightClick(e, item)}
               >
                 <span className="title">{item.title}</span>
                 {item.steps.length > 0 ? (
@@ -70,7 +93,11 @@ const TaskList = (props) => {
             </span>
           </div>
         ))}
-        {!!taskCompleted.length && (<h6 style={{ marginTop: "15px", marginLeft: "10px" }}>Đã hoàn thành</h6>)}
+        {!!taskCompleted.length && (
+          <h6 style={{ marginTop: "15px", marginLeft: "10px" }}>
+            Đã hoàn thành
+          </h6>
+        )}
         {taskCompleted.map((item) => (
           <div key={item.id} className="taskItem d-flex align-items-center">
             <input
@@ -84,7 +111,7 @@ const TaskList = (props) => {
               <button
                 className="btn-taskItem"
                 onClick={() => loadTaskDetail(item.id)}
-                onContextMenu={(e) => handleRightClick(e, item.id)}
+                onContextMenu={(e) => handleRightClick(e, item)}
               >
                 <del className="title">{item.title}</del>
                 {item.steps.length > 0 ? (
@@ -104,18 +131,45 @@ const TaskList = (props) => {
           </div>
         ))}
         <ContextMenu id="context-menu">
-          <MenuItem data={{ taskId: currentTaskId }}>
+          <MenuItem>
             <span>Add to...</span>
           </MenuItem>
           <MenuItem divider />
           <MenuItem
-            data={{ taskId: currentTaskId }}
-            onClick={handleClick}
+            data={{ taskId: currentTask.id, title: currentTask.title }}
+            onClick={handleClickOpen}
             className="text-danger"
           >
             <Icon>delete</Icon> <span>Delete task</span>
           </MenuItem>
         </ContextMenu>
+
+        <Dialog
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="alert-dialog-title"
+          aria-describedby="alert-dialog-description"
+        >
+          <DialogTitle id="alert-dialog-title">
+            "{currentTask.title}" sẽ bị xóa vĩnh viễn.
+          </DialogTitle>
+          <DialogContent>
+            <DialogContentText id="alert-dialog-description">
+              Bạn sẽ không thể hoàn tác hành động này.
+            </DialogContentText>
+          </DialogContent>
+          <DialogActions>
+            <button onClick={handleClose} className="btn btn-default">
+              Cancel
+            </button>
+            <button
+              onClick={() => handleClickDelete(currentTask.taskId)}
+              className="btn btn-danger"
+            >
+              Delete task
+            </button>
+          </DialogActions>
+        </Dialog>
       </div>
     );
   };
