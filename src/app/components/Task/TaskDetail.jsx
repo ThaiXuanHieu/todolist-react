@@ -60,7 +60,7 @@ const TaskDetail = (props) => {
       <div className="box-item-right update-dueDate p-2 bg-white">
         <div className="date-picler-custom">
           <p style={{ fontWeight: "500", fontSize: "14px", color: "#4f4f50" }}>
-            Thêm ngày đến hạn
+            Add Due date
           </p>
           <DatePicker
             selected={dueDate}

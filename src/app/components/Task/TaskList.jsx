@@ -95,7 +95,7 @@ const TaskList = (props) => {
         ))}
         {!!taskCompleted.length && (
           <h6 style={{ marginTop: "15px", marginLeft: "10px" }}>
-            Đã hoàn thành
+            Completed
           </h6>
         )}
         {taskCompleted.map((item) => (
@@ -151,11 +151,11 @@ const TaskList = (props) => {
           aria-describedby="alert-dialog-description"
         >
           <DialogTitle id="alert-dialog-title">
-            "{currentTask.title}" sẽ bị xóa vĩnh viễn.
+            "{currentTask.title}" will be permanently deleted.
           </DialogTitle>
           <DialogContent>
             <DialogContentText id="alert-dialog-description">
-              Bạn sẽ không thể hoàn tác hành động này.
+              You will not be able to undo this action.
             </DialogContentText>
           </DialogContent>
           <DialogActions>
