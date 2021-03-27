@@ -32,7 +32,7 @@ const TaskPage = (props) => {
           </div>
           <div
             className={ isShow? "col-center col-md-7" : "col-center col-md-10"} 
-            style={{ backgroundColor: "white" }}
+            style={{ backgroundColor: "white", height: "100%" }}
           >
             <div className="task-toolBar d-flex justify-content-between">
               <h5 className="m-3" style={{ color: "#3e69e4" }}>
