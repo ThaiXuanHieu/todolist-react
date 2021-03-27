@@ -35,11 +35,13 @@ const TaskList = (props) => {
   };
 
   const loadTaskDetail = (id) => {
+    props.handleClickItem();
     dispatch(taskAction.getTask(id));
   };
   const handleClickDelete = (id) => {
     dispatch(taskAction.remove(id));
     setOpen(false);
+    props.deleteItem();
   };
 
   const handleRightClick = (e, task) => {
@@ -94,9 +96,7 @@ const TaskList = (props) => {
           </div>
         ))}
         {!!taskCompleted.length && (
-          <h6 style={{ marginTop: "15px", marginLeft: "10px" }}>
-            Completed
-          </h6>
+          <h6 style={{ marginTop: "15px", marginLeft: "10px" }}>Completed</h6>
         )}
         {taskCompleted.map((item) => (
           <div key={item.id} className="taskItem d-flex align-items-center">

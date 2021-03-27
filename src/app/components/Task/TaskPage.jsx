@@ -1,6 +1,6 @@
 import TaskForm from "./TaskForm";
 import TaskList from "./TaskList";
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import * as taskAction from "../../actions/taskAction";
 import Header from "../Header/Header";
@@ -11,6 +11,7 @@ import { Icon } from "@material-ui/core";
 const TaskPage = (props) => {
   // eslint-disable-next-line no-unused-vars
   const { list, task } = useSelector((state) => state.task);
+  const [isShow, setIsShow] = useState(false);
   const dispatch = useDispatch();
 
   const user = JSON.parse(localStorage.getItem("user"));
@@ -19,9 +20,9 @@ const TaskPage = (props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const showTaskDetail = () => {
-
-  }
+  // const showTaskDetail = () => {
+  //   setIsShow(!isShow);
+  // };
 
   return (
     <div className="task-page">
@@ -34,7 +35,7 @@ const TaskPage = (props) => {
             <SideBar />
           </div>
           <div
-            className="col-center col-md-7"
+            className={ isShow? "col-center col-md-7" : "col-center col-md-10"} 
             style={{ backgroundColor: "white" }}
           >
             <div className="task-toolBar d-flex justify-content-between">
@@ -46,10 +47,10 @@ const TaskPage = (props) => {
               </button>
             </div>
             <TaskForm />
-            <TaskList tasks={list} handleClickItem={showTaskDetail}/>
+            <TaskList tasks={list} handleClickItem={() => setIsShow(true)} deleteItem={() => setIsShow(false)}/>
           </div>
           <div className="col-right col-md-3 p-0">
-            <TaskDetail />
+            {isShow && <TaskDetail />}
           </div>
         </div>
       </div>
