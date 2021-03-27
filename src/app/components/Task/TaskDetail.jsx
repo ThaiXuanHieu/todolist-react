@@ -32,6 +32,11 @@ const TaskDetail = (props) => {
     dispatch(taskAction.update(task));
   };
 
+  const handleUpdateDueDate = (task) => {
+    task.dueDate = dueDate;
+    dispatch(taskAction.update(task));
+  };
+
   return (
     <div>
       <div className="p-2 box-item-right bg-white">
@@ -66,6 +71,14 @@ const TaskDetail = (props) => {
             selected={dueDate}
             onChange={(date) => setDueDate(date)}
           />
+        </div>
+        <div className="mt-2">
+          <button
+            className="btn btn-primary rounded-0"
+            onClick={() => handleUpdateDueDate(task)}
+          >
+            Save
+          </button>
         </div>
       </div>
       <div className="box-item-right note p-2 bg-white">

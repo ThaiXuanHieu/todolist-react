@@ -19,6 +19,10 @@ const TaskPage = (props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const showTaskDetail = () => {
+
+  }
+
   return (
     <div className="task-page">
       <div className="text-center">
@@ -42,7 +46,7 @@ const TaskPage = (props) => {
               </button>
             </div>
             <TaskForm />
-            <TaskList tasks={list} />
+            <TaskList tasks={list} handleClickItem={showTaskDetail}/>
           </div>
           <div className="col-right col-md-3 p-0">
             <TaskDetail />
