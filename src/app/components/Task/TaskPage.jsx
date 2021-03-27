@@ -20,10 +20,6 @@ const TaskPage = (props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // const showTaskDetail = () => {
-  //   setIsShow(!isShow);
-  // };
-
   return (
     <div className="task-page">
       <div className="text-center">
