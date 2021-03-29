@@ -36,7 +36,9 @@ const TaskList = (props) => {
 
   const loadTaskDetail = (id) => {
     props.handleClickItem();
-    dispatch(taskAction.getTask(id));
+    setTimeout(() => {
+      dispatch(taskAction.getTask(id));
+    }, 200);
   };
   const handleClickDelete = (id) => {
     dispatch(taskAction.remove(id));
