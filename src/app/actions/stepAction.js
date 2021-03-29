@@ -9,11 +9,27 @@ export const STEP_ACTION_TYPES = {
   GET_BY_TASKID: "STEP/GET_BY_TASKID",
 };
 
-export const create = (newTask) => (dispatch) => {
-  return StepService.create(newTask)
+export const create = (newStep) => (dispatch) => {
+  return StepService.create(newStep)
     .then((response) => {
       dispatch({
         type: STEP_ACTION_TYPES.CREATE,
+        payload: response.data,
+      });
+    })
+    .catch((error) => {
+      dispatch({
+        type: "ERROR",
+        payload: error,
+      });
+    });
+};
+
+export const getSteps = () => (dispatch) => {
+  return StepService.getSteps()
+    .then((response) => {
+      dispatch({
+        type: STEP_ACTION_TYPES.GET_ALL,
         payload: response.data,
       });
     })

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import * as taskAction from "../../actions/taskAction";
 import "./style.css";
 import { GetDate } from "../../utils/formatDate";
@@ -16,6 +16,8 @@ const TaskList = (props) => {
     taskId: 0,
     title: "",
   });
+
+  const { list } = useSelector((state) => state.step);
 
   const [open, setOpen] = React.useState(false);
 
@@ -62,6 +64,16 @@ const TaskList = (props) => {
     const taskInComplete = props.tasks.filter(
       (item) => item.isComplete === false
     );
+
+    if (list.length > 0) {
+      taskCompleted.map(
+        (item) => (item.steps = [...list.filter((i) => i.taskId === item.id)])
+      );
+
+      taskInComplete.map(
+        (item) => (item.steps = [...list.filter((i) => i.taskId === item.id)])
+      );
+    }
 
     return (
       <div>

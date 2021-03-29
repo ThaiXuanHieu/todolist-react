@@ -3,6 +3,7 @@ import TaskList from "./TaskList";
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import * as taskAction from "../../actions/taskAction";
+import * as stepAction from "../../actions/stepAction";
 import Header from "../Header/Header";
 import SideBar from "../SideBar/SideBar";
 import TaskDetail from "./TaskDetail";
@@ -17,6 +18,7 @@ const TaskPage = (props) => {
   const user = JSON.parse(localStorage.getItem("user"));
   useEffect(() => {
     dispatch(taskAction.getTasks(user.id));
+    dispatch(stepAction.getSteps());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -31,7 +33,7 @@ const TaskPage = (props) => {
             <SideBar />
           </div>
           <div
-            className={ isShow? "col-center col-md-7" : "col-center col-md-10"} 
+            className={isShow ? "col-center col-md-7" : "col-center col-md-10"}
             style={{ backgroundColor: "white", height: "100%" }}
           >
             <div className="task-toolBar d-flex justify-content-between">
@@ -43,7 +45,11 @@ const TaskPage = (props) => {
               </button>
             </div>
             <TaskForm />
-            <TaskList tasks={list} handleClickItem={() => setIsShow(true)} deleteItem={() => setIsShow(false)}/>
+            <TaskList
+              tasks={list}
+              handleClickItem={() => setIsShow(true)}
+              deleteItem={() => setIsShow(false)}
+            />
           </div>
           <div className="col-right col-md-3 p-0">
             {isShow && <TaskDetail />}

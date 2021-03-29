@@ -60,7 +60,7 @@ const TaskDetail = (props) => {
             />
           </form>
         </div>
-        <Step steps={task.steps} taskId={task.id} />
+        <Step taskId={task.id} />
       </div>
       <div className="box-item-right update-dueDate p-2 bg-white">
         <div className="date-picler-custom">

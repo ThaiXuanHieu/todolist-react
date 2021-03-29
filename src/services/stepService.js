@@ -34,6 +34,22 @@ export const getByTaskId = async (taskId) => {
   return data;
 };
 
+export const getSteps = async () => {
+  let data;
+  await api
+    .get(`${STEP_BASE_URL}`)
+    .then((res) => {
+      data = res;
+    })
+    .catch((error) => {
+      if (error.response) {
+        data = error.response;
+      }
+    });
+
+  return data;
+};
+
 export const update = async (step) => {
   let data;
   await api
@@ -68,6 +84,7 @@ export const remove = async (id) => {
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
+  getSteps,
   create,
   update,
   remove,

@@ -2,6 +2,7 @@ import { STEP_ACTION_TYPES } from "../actions/stepAction";
 
 const initialState = {
   list: [],
+  steps: [],
 };
 
 export const step = (state = initialState, action) => {
@@ -16,12 +17,16 @@ export const step = (state = initialState, action) => {
       return {
         ...state,
         list: [...state.list, action.payload],
+        steps: [...state.steps, action.payload],
       };
 
     case STEP_ACTION_TYPES.GET_BY_TASKID:
+      console.log("chạy qua getbytaskid");
+      console.log([...state.list])
       return {
         ...state,
-        list: [...action.payload],
+        list: [...state.list],
+        steps: [...action.payload],
       };
 
     case STEP_ACTION_TYPES.UPDATE:
@@ -30,14 +35,18 @@ export const step = (state = initialState, action) => {
         list: state.list.map((x) =>
           x.id === action.payload.id ? action.payload : x
         ),
+        steps: state.steps.map((x) =>
+          x.id === action.payload.id ? action.payload : x
+        ),
       };
 
     case STEP_ACTION_TYPES.DELETE:
       return {
         ...state,
         list: state.list.filter((x) => x.id !== action.payload),
+        steps: state.steps.filter((x) => x.id !== action.payload),
       };
-      
+
     default:
       return state;
   }
