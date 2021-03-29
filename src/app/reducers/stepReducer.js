@@ -21,8 +21,6 @@ export const step = (state = initialState, action) => {
       };
 
     case STEP_ACTION_TYPES.GET_BY_TASKID:
-      console.log("chạy qua getbytaskid");
-      console.log([...state.list])
       return {
         ...state,
         list: [...state.list],
