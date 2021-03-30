@@ -7,6 +7,14 @@ import * as stepAction from "../../actions/stepAction";
 import Header from "../Header/Header";
 import SideBar from "../SideBar/SideBar";
 import TaskDetail from "./TaskDetail";
+import Button from "@material-ui/core/Button";
+import ClickAwayListener from "@material-ui/core/ClickAwayListener";
+import Grow from "@material-ui/core/Grow";
+import Paper from "@material-ui/core/Paper";
+import Popper from "@material-ui/core/Popper";
+import MenuItem from "@material-ui/core/MenuItem";
+import MenuList from "@material-ui/core/MenuList";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Icon } from "@material-ui/core";
 
 const TaskPage = (props) => {
@@ -21,6 +29,38 @@ const TaskPage = (props) => {
     dispatch(stepAction.getSteps());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const [open, setOpen] = React.useState(false);
+  const anchorRef = React.useRef(null);
+
+  const handleToggle = () => {
+    setOpen((prevOpen) => !prevOpen);
+  };
+
+  const handleClose = (event) => {
+    if (anchorRef.current && anchorRef.current.contains(event.target)) {
+      return;
+    }
+
+    setOpen(false);
+  };
+
+  function handleListKeyDown(event) {
+    if (event.key === "Tab") {
+      event.preventDefault();
+      setOpen(false);
+    }
+  }
+
+  // return focus to the button when we transitioned from !open -> open
+  const prevOpen = React.useRef(open);
+  React.useEffect(() => {
+    if (prevOpen.current === true && open === false) {
+      anchorRef.current.focus();
+    }
+
+    prevOpen.current = open;
+  }, [open]);
 
   return (
     <div className="task-page">
@@ -40,9 +80,68 @@ const TaskPage = (props) => {
               <h5 className="m-3" style={{ color: "#3e69e4" }}>
                 Tasks
               </h5>
-              <button className="btn-toolBar">
-                <Icon>sort</Icon> Sort
-              </button>
+              <Button
+                ref={anchorRef}
+                aria-controls={open ? "menu-list-grow" : undefined}
+                aria-haspopup="true"
+                onClick={handleToggle}
+                className="btn-toolBar"
+                style={{ color: "#3e69e4" }}
+              >
+                <Icon>sort</Icon>
+                Sort
+              </Button>
+              <Popper
+                open={open}
+                anchorEl={anchorRef.current}
+                role={undefined}
+                transition
+                disablePortal
+                style={{ zIndex: "100" }}
+              >
+                {({ TransitionProps, placement }) => (
+                  <Grow
+                    {...TransitionProps}
+                    style={{
+                      transformOrigin:
+                        placement === "bottom" ? "center top" : "center bottom",
+                      borderRadius: "0px",
+                    }}
+                  >
+                    <Paper>
+                      <ClickAwayListener onClickAway={handleClose}>
+                        <MenuList
+                          autoFocusItem={open}
+                          id="menu-list-grow"
+                          onKeyDown={handleListKeyDown}
+                        >
+                          <p
+                            className="text-center"
+                            style={{ outline: "none" }}
+                          >
+                            Sort by
+                          </p>
+                          <hr />
+                          <MenuItem onClick={handleClose}>
+                            <FontAwesomeIcon
+                              icon="star"
+                              style={{ color: "#767678", marginRight: "10px" }}
+                            />
+                            Important
+                          </MenuItem>
+                          <MenuItem onClick={handleClose}>
+                            <FontAwesomeIcon
+                              icon="calendar"
+                              style={{ color: "#767678", marginRight: "10px" }}
+                            />
+                            Due Date
+                          </MenuItem>
+                        </MenuList>
+                      </ClickAwayListener>
+                    </Paper>
+                  </Grow>
+                )}
+              </Popper>
             </div>
             <TaskForm />
             <TaskList

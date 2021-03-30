@@ -4,8 +4,8 @@ import { useDispatch } from "react-redux";
 import { logout } from "../../actions/userAction";
 import "./style.css";
 import { Link } from "react-router-dom";
-import Icon from "@material-ui/core/Icon";
 import * as taskAction from "../../actions/taskAction";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Header = (props) => {
   const [searchString, setSearchString] = useState("");
@@ -33,11 +33,11 @@ const Header = (props) => {
       <div>
         <form onSubmit={handleSubmit}>
           <div className="form-group m-0">
-            <Icon
-              style={{ position: "absolute", margin: "5px", color: "#3e69e4" }}
-            >
-              search
-            </Icon>
+            <FontAwesomeIcon
+              icon="search"
+              style={{ position: "absolute", margin: "9px", color: "#3e69e4" }}
+            />
+
             <input
               type="text"
               placeholder="Search..."

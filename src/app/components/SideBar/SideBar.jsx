@@ -1,20 +1,21 @@
 import "./style.css";
-import Icon from "@material-ui/core/Icon";
 import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 const SideBar = (props) => {
   return (
     <ul className="sidebar mt-3">
       <li>
         <div className="sidebar-item">
           <Link to="/task" className="sidebar-link">
-            <Icon style={{ color: "#767678" }}>home</Icon> <span>Task</span>
+            <FontAwesomeIcon icon="home" /> <span>Task</span>
           </Link>
         </div>
       </li>
       <li>
         <div className="sidebar-item">
           <Link to="/myday" className="sidebar-link">
-            <Icon style={{ color: "#767678" }}>search</Icon>
+            <FontAwesomeIcon icon="search" />
             <span>My day</span>
           </Link>
         </div>
@@ -22,7 +23,7 @@ const SideBar = (props) => {
       <li>
         <div className="sidebar-item">
           <Link to="/important" className="sidebar-link">
-            <Icon style={{ color: "#767678" }}>star</Icon>{" "}
+            <FontAwesomeIcon icon="star" />
             <span>Important</span>
           </Link>
         </div>
@@ -30,7 +31,7 @@ const SideBar = (props) => {
       <li>
         <div className="sidebar-item">
           <Link to="/planned" className="sidebar-link">
-            <Icon style={{ color: "#767678" }}>date_range</Icon>{" "}
+            <FontAwesomeIcon icon="calendar" />
             <span>Planned</span>
           </Link>
         </div>

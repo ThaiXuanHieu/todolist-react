@@ -10,6 +10,7 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const TaskList = (props) => {
   const [currentTask, setCurrentTask] = useState({
@@ -93,20 +94,25 @@ const TaskList = (props) => {
                 onContextMenu={(e) => handleRightClick(e, item)}
               >
                 <span className="title">{item.title}</span>
-                {item.steps.length > 0 ? (
-                  <p className="step-completed">
-                    {item.steps.filter((x) => x.isComplete === true).length +
-                      " "}
-                    trên {item.steps.length}
-                  </p>
-                ) : (
-                  ""
-                )}
+                <div className="step-dueDate">
+                  {item.steps.length > 0 ? (
+                    <p className="step-completed mr-5">
+                      {item.steps.filter((x) => x.isComplete === true).length +
+                        " "}
+                      trên {item.steps.length}
+                    </p>
+                  ) : (
+                    ""
+                  )}
+                  <span className="dueDate">
+                    {!item.dueDate ? item.dueDate : GetDate(item.dueDate)}
+                  </span>
+                </div>
               </button>
             </ContextMenuTrigger>
-            <span className="dueDate">
-              {!item.dueDate ? item.dueDate : GetDate(item.dueDate)}
-            </span>
+            <button class="btn-add-important">
+              <FontAwesomeIcon icon="star" />
+            </button>
           </div>
         ))}
         {!!taskCompleted.length && (
@@ -128,20 +134,26 @@ const TaskList = (props) => {
                 onContextMenu={(e) => handleRightClick(e, item)}
               >
                 <del className="title">{item.title}</del>
-                {item.steps.length > 0 ? (
-                  <p className="step-completed">
-                    {item.steps.filter((x) => x.isComplete === true).length +
-                      " "}
-                    trên {item.steps.length}
-                  </p>
-                ) : (
-                  ""
-                )}
+                <div className="step-dueDate">
+                  {item.steps.length > 0 ? (
+                    <p className="step-completed mr-5">
+                      {item.steps.filter((x) => x.isComplete === true).length +
+                        " "}
+                      trên {item.steps.length}
+                    </p>
+                  ) : (
+                    ""
+                  )}
+                  <span className="dueDate">
+                    {!item.dueDate ? item.dueDate : GetDate(item.dueDate)}
+                  </span>
+                </div>
               </button>
             </ContextMenuTrigger>
-            <span className="dueDate">
-              {!item.dueDate ? item.dueDate : GetDate(item.dueDate)}
-            </span>
+
+            <button className="btn-add-important">
+              <FontAwesomeIcon icon="star" style={{color: "#3e69e4"}} />
+            </button>
           </div>
         ))}
         <ContextMenu id="context-menu">
