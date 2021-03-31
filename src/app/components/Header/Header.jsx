@@ -28,7 +28,10 @@ const Header = (props) => {
   return (
     <div className="header d-flex align-items-center justify-content-between">
       <div className="brand-name">
-        <h6 className="m-0">To Do</h6>
+        <h6 className="m-0">
+          <FontAwesomeIcon icon="th" style={{marginRight: "15px"}} />
+          <Link to="/task">To Do</Link>
+        </h6>
       </div>
       <div>
         <form onSubmit={handleSubmit}>

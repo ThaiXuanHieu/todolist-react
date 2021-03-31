@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { Icon } from "@material-ui/core";
 import * as stepAction from "../../actions/stepAction";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const StepItem = (props) => {
   const [stepTitle, setStepTitle] = useState("");
@@ -77,7 +77,7 @@ const StepItem = (props) => {
         )}
       </form>
       <button className="btn-deleteStep" onClick={handleClickOpen}>
-        <Icon>close</Icon>
+        <FontAwesomeIcon icon="times" />
       </button>
       <Dialog
         open={open}

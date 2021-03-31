@@ -6,6 +6,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import "./style.css";
 import { FormatDateInput } from "../../utils/formatDate";
+import File from "../File/File";
 
 const TaskDetail = (props) => {
   // eslint-disable-next-line no-unused-vars
@@ -41,13 +42,12 @@ const TaskDetail = (props) => {
     <div>
       <div className="p-2 box-item-right bg-white">
         <div
-          className="mb-3"
           style={{ paddingLeft: "10px", display: "flex", alignItems: "center" }}
         >
           <input
             type="checkbox"
             className="mr-3"
-            title="Đánh dấu là đã hoàn thành"
+            title={task.isComplete ? "Đánh dấu là chưa hoàn thành" : "Đánh dấu là đã hoàn thành"}
             checked={task.isComplete}
             onChange={() => handleChangeStatusTask(task)}
           />
@@ -81,10 +81,8 @@ const TaskDetail = (props) => {
           </button>
         </div>
       </div>
-      <div className="box-item-right note p-2 bg-white">
-        <form>
-          <textarea className="input-note"></textarea>
-        </form>
+      <div className="box-item-right file p-2 bg-white">
+        <File />
       </div>
     </div>
   );

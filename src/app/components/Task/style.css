@@ -41,8 +41,15 @@ textarea {
 .step-item {
   display: flex;
   align-items: center;
-  padding: 10px;
-  border-bottom: 1px solid #f4f4f4;
+  padding: 0px 10px;
+}
+
+.step-item form {
+  width: 100%;
+}
+
+.step-item input[type="text"] {
+  border-bottom: 2px solid #f4f4f4;
 }
 
 .btn-deleteStep {
@@ -53,13 +60,13 @@ textarea {
   right: 15px;
 }
 
-.btn-deleteStep span {
+.btn-deleteStep svg {
   color: #b3b3b4;
 }
 
 .taskItem {
   padding: 5px 10px;
-  border-bottom: 1px solid #eaeaea;
+  border-bottom: 2px solid #f4f4f4;
 }
 
 .taskItem:hover {

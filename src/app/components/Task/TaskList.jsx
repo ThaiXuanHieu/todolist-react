@@ -110,7 +110,7 @@ const TaskList = (props) => {
                 </div>
               </button>
             </ContextMenuTrigger>
-            <button class="btn-add-important">
+            <button className="btn-add-important">
               <FontAwesomeIcon icon="star" />
             </button>
           </div>
@@ -123,7 +123,7 @@ const TaskList = (props) => {
             <input
               type="checkbox"
               className="mr-3"
-              title="Đánh dấu là đã hoàn thành"
+              title="Đánh dấu là chưa hoàn thành"
               checked={item.isComplete}
               onChange={() => handleChange(item)}
             />
