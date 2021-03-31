@@ -1,3 +1,5 @@
+# todolist-react, a sample project that can help you getting start with React + Redux easier
+
 ![todolist](https://user-images.githubusercontent.com/48479522/113116311-83fa2f00-9237-11eb-84f9-c333eaa5f9df.png)
 
 
