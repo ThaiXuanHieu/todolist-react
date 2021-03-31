@@ -29,7 +29,7 @@ const Header = (props) => {
     <div className="header d-flex align-items-center justify-content-between">
       <div className="brand-name">
         <h6 className="m-0">
-          <FontAwesomeIcon icon="th" style={{marginRight: "15px"}} />
+          <FontAwesomeIcon icon="th" style={{ marginRight: "15px" }} />
           <Link to="/task">To Do</Link>
         </h6>
       </div>
@@ -43,7 +43,7 @@ const Header = (props) => {
 
             <input
               type="text"
-              placeholder="Search..."
+              placeholder="Tìm kiếm..."
               className="input-search"
               value={searchString}
               onChange={(e) => setSearchString(e.target.value)}
@@ -54,7 +54,7 @@ const Header = (props) => {
       <div>
         <Link to={"/profile"}>{user.fullName}</Link>
         <a href="/login" className="ml-5" onClick={handleLogout}>
-          Logout <span>&#8627;</span>
+          Đăng xuất <span>&#8627;</span>
         </a>
       </div>
     </div>

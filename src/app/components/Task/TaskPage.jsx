@@ -89,7 +89,7 @@ const TaskPage = (props) => {
                 style={{ color: "#3e69e4" }}
               >
                 <Icon>sort</Icon>
-                Sort
+                Sắp xếp
               </Button>
               <Popper
                 open={open}
@@ -119,7 +119,7 @@ const TaskPage = (props) => {
                             className="text-center"
                             style={{ outline: "none" }}
                           >
-                            Sort by
+                            Sắp xếp theo
                           </p>
                           <hr />
                           <MenuItem onClick={handleClose}>
@@ -127,14 +127,14 @@ const TaskPage = (props) => {
                               icon="star"
                               style={{ color: "#767678", marginRight: "10px" }}
                             />
-                            Important
+                            Tầm quan trọng
                           </MenuItem>
                           <MenuItem onClick={handleClose}>
                             <FontAwesomeIcon
                               icon="calendar"
                               style={{ color: "#767678", marginRight: "10px" }}
                             />
-                            Due Date
+                            Ngày đến hạn
                           </MenuItem>
                         </MenuList>
                       </ClickAwayListener>

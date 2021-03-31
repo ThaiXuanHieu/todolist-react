@@ -118,6 +118,11 @@ const TaskList = (props) => {
             <button
               className="btn-add-important"
               onClick={() => updateImportance(item)}
+              title={
+                item.isImportant
+                  ? "Loại bỏ mức độ quan trọng"
+                  : "Đánh dấu tác vụ là quan trọng"
+              }
             >
               <FontAwesomeIcon
                 icon="star"
@@ -127,7 +132,9 @@ const TaskList = (props) => {
           </div>
         ))}
         {!!taskCompleted.length && (
-          <h6 style={{ marginTop: "15px", marginLeft: "10px" }}>Completed</h6>
+          <h6 style={{ marginTop: "15px", marginLeft: "10px" }}>
+            Đã hoàn thành
+          </h6>
         )}
         {taskCompleted.map((item) => (
           <div key={item.id} className="taskItem d-flex align-items-center">
@@ -165,6 +172,11 @@ const TaskList = (props) => {
             <button
               className="btn-add-important"
               onClick={() => updateImportance(item)}
+              title={
+                item.isImportant
+                  ? "Loại bỏ mức độ quan trọng"
+                  : "Đánh dấu tác vụ là quan trọng"
+              }
             >
               <FontAwesomeIcon
                 icon="star"
@@ -175,7 +187,7 @@ const TaskList = (props) => {
         ))}
         <ContextMenu id="context-menu">
           <MenuItem>
-            <span>Add to...</span>
+            <span>Thêm vào...</span>
           </MenuItem>
           <MenuItem divider />
           <MenuItem
@@ -183,7 +195,7 @@ const TaskList = (props) => {
             onClick={handleClickOpen}
             className="text-danger"
           >
-            <Icon>delete</Icon> <span>Delete task</span>
+            <Icon>delete</Icon> <span>Xóa tác vụ</span>
           </MenuItem>
         </ContextMenu>
 
@@ -194,22 +206,22 @@ const TaskList = (props) => {
           aria-describedby="alert-dialog-description"
         >
           <DialogTitle id="alert-dialog-title">
-            "{currentTask.title}" will be permanently deleted.
+            "{currentTask.title}" sẽ bị xóa vĩnh viễn.
           </DialogTitle>
           <DialogContent>
             <DialogContentText id="alert-dialog-description">
-              You will not be able to undo this action.
+              Bạn sẽ không thể hoàn tác hành động này.
             </DialogContentText>
           </DialogContent>
           <DialogActions>
             <button onClick={handleClose} className="btn btn-default">
-              Cancel
+              Hủy bỏ
             </button>
             <button
               onClick={() => handleClickDelete(currentTask.taskId)}
               className="btn btn-danger"
             >
-              Delete task
+              Xóa tác vụ
             </button>
           </DialogActions>
         </Dialog>

@@ -16,7 +16,7 @@ const SideBar = (props) => {
         <div className="sidebar-item">
           <Link to="/myday" className="sidebar-link">
             <FontAwesomeIcon icon="search" />
-            <span>My day</span>
+            <span>Ngày của tôi</span>
           </Link>
         </div>
       </li>
@@ -24,7 +24,7 @@ const SideBar = (props) => {
         <div className="sidebar-item">
           <Link to="/important" className="sidebar-link">
             <FontAwesomeIcon icon="star" />
-            <span>Important</span>
+            <span>Quan trọng</span>
           </Link>
         </div>
       </li>
@@ -32,7 +32,7 @@ const SideBar = (props) => {
         <div className="sidebar-item">
           <Link to="/planned" className="sidebar-link">
             <FontAwesomeIcon icon="calendar" />
-            <span>Planned</span>
+            <span>Đã lập kế hoạch</span>
           </Link>
         </div>
       </li>

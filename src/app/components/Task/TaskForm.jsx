@@ -33,13 +33,13 @@ const TaskForm = (props) => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <div className="form-group">
+      <div className="">
         <input
           type="text"
           value={title || ""}
           onChange={(e) => setTitle(e.target.value)}
           className="input-title"
-          placeholder="Add task"
+          placeholder="Thêm tác vụ"
         />
       </div>
     </form>

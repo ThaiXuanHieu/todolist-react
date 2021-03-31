@@ -86,22 +86,22 @@ const StepItem = (props) => {
         aria-describedby="alert-dialog-description"
       >
         <DialogTitle id="alert-dialog-title">
-          "{props.step.title}" will be permanently deleted.
+          "{props.step.title}" sẽ bị xóa vĩnh viễn.
         </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-            You will not be able to undo this action.
+            Bạn sẽ không thể hoàn tác hành động này.
           </DialogContentText>
         </DialogContent>
         <DialogActions>
           <button onClick={handleClose} className="btn btn-default">
-            Cancel
+            Hủy bỏ
           </button>
           <button
             onClick={() => handleDelete(props.step.id)}
             className="btn btn-danger"
           >
-            Delete task
+            Xóa bước
           </button>
         </DialogActions>
       </Dialog>

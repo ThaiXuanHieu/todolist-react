@@ -39,7 +39,7 @@ const LoginForm = (props) => {
 
   return (
     <div className="container">
-      <h1 className="text-center mb-5">Login</h1>
+      <h1 className="text-center mb-5">Đăng nhập</h1>
       <div className="d-flex justify-content-center">
         <Form onSubmit={handleSubmit}>
           <div className="form-group">
@@ -53,7 +53,7 @@ const LoginForm = (props) => {
             />
           </div>
           <div className="form-group">
-            <label>Password:</label>
+            <label>Mật khẩu:</label>
             <Input
               type="password"
               className="form-control"
@@ -64,14 +64,15 @@ const LoginForm = (props) => {
           </div>
           <div className="form-group form-check">
             <label className="form-check-label">
-              <input className="form-check-input" type="checkbox" /> Remember me
+              <input className="form-check-input" type="checkbox" /> Nhớ mật
+              khẩu
             </label>
           </div>
           <Button className="btn btn-primary w-100" onClick={handleSubmit}>
-            Login
+            Đăng nhập
           </Button>
           <div className="mt-3">
-            <Link to={"/register"}>Register now</Link>
+            <Link to={"/register"}>Đăng ký ngay</Link>
           </div>
         </Form>
       </div>

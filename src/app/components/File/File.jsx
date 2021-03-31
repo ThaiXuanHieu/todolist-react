@@ -7,7 +7,7 @@ const File = (props) => {
       <div title="Add File">
         <label className="btn-upload-file" htmlFor="file-upload">
           <FontAwesomeIcon icon="paperclip" />
-          <span className="title-btn">Add File</span>
+          <span className="title-btn">Thêm tệp</span>
         </label>
         <input type="file" id="file-upload" style={{ display: "none" }} />
       </div>
@@ -17,7 +17,7 @@ const File = (props) => {
             <div className="file-extension">PDF</div>
           </div>
           <div className="file-detail">
-            <p className="file-name">File Name.pdf</p>
+            <p className="file-name">Tên tệp.pdf</p>
             <div className="file-info">
               <span className="file-size">22.5KB</span>
               <span className="file-type">PDF</span>
@@ -32,7 +32,7 @@ const File = (props) => {
             <div className="file-extension">DOC</div>
           </div>
           <div className="file-detail">
-            <p className="file-name">File Name.pdf</p>
+            <p className="file-name">Tên tệp.pdf</p>
             <div className="file-info">
               <span className="file-size">22.5KB</span>
               <span className="file-type">Word</span>

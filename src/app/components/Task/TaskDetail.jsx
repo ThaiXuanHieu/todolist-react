@@ -47,7 +47,11 @@ const TaskDetail = (props) => {
           <input
             type="checkbox"
             className="mr-3"
-            title={task.isComplete ? "Đánh dấu là chưa hoàn thành" : "Đánh dấu là đã hoàn thành"}
+            title={
+              task.isComplete
+                ? "Đánh dấu là chưa hoàn thành"
+                : "Đánh dấu là đã hoàn thành"
+            }
             checked={task.isComplete}
             onChange={() => handleChangeStatusTask(task)}
           />
@@ -65,7 +69,7 @@ const TaskDetail = (props) => {
       <div className="box-item-right update-dueDate p-2 bg-white">
         <div className="date-picler-custom">
           <p style={{ fontWeight: "500", fontSize: "14px", color: "#4f4f50" }}>
-            Add Due date
+            Thêm ngày đến hạn
           </p>
           <DatePicker
             selected={dueDate}
@@ -74,10 +78,10 @@ const TaskDetail = (props) => {
         </div>
         <div className="mt-2">
           <button
-            className="btn btn-primary rounded-0"
+            className="btn btn-primary"
             onClick={() => handleUpdateDueDate(task)}
           >
-            Save
+            Lưu
           </button>
         </div>
       </div>

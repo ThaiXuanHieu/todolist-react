@@ -35,7 +35,7 @@ const Step = (props) => {
         <input
           type="text"
           className="input-step"
-          placeholder="Add step"
+          placeholder="Thêm bước"
           value={titleStep || ""}
           onChange={(e) => setTitleStep(e.target.value)}
         />

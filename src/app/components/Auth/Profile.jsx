@@ -19,11 +19,11 @@ const Profile = (props) => {
             style={{ backgroundColor: "white", height: "100%" }}
           >
             <h5 className="m-3" style={{ color: "#3e69e4" }}>
-              Profile
+              Hồ sơ
             </h5>
             <div className="ml-3">
-              <p>FirstName : {firstName}</p>
-              <p>LastName : {lastName.join(" ")}</p>
+              <p>Họ : {firstName}</p>
+              <p>Tên : {lastName.join(" ")}</p>
             </div>
           </div>
         </div>
