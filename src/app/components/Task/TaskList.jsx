@@ -37,6 +37,11 @@ const TaskList = (props) => {
     dispatch(taskAction.update(task));
   };
 
+  const updateImportance = (task) => {
+    task.isImportant = !task.isImportant;
+    dispatch(taskAction.update(task));
+  };
+
   const loadTaskDetail = (id) => {
     props.handleClickItem();
     setTimeout(() => {
@@ -110,8 +115,14 @@ const TaskList = (props) => {
                 </div>
               </button>
             </ContextMenuTrigger>
-            <button className="btn-add-important">
-              <FontAwesomeIcon icon="star" />
+            <button
+              className="btn-add-important"
+              onClick={() => updateImportance(item)}
+            >
+              <FontAwesomeIcon
+                icon="star"
+                style={item.isImportant && { color: "#3e69e4" }}
+              />
             </button>
           </div>
         ))}
@@ -151,8 +162,14 @@ const TaskList = (props) => {
               </button>
             </ContextMenuTrigger>
 
-            <button className="btn-add-important">
-              <FontAwesomeIcon icon="star" style={{color: "#3e69e4"}} />
+            <button
+              className="btn-add-important"
+              onClick={() => updateImportance(item)}
+            >
+              <FontAwesomeIcon
+                icon="star"
+                style={item.isImportant && { color: "#3e69e4" }}
+              />
             </button>
           </div>
         ))}
