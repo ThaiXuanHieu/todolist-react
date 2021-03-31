@@ -32,7 +32,7 @@ const File = (props) => {
             <div className="file-extension">DOC</div>
           </div>
           <div className="file-detail">
-            <p className="file-name">Tên tệp.pdf</p>
+            <p className="file-name">Tên tệp.docx</p>
             <div className="file-info">
               <span className="file-size">22.5KB</span>
               <span className="file-type">Word</span>
