@@ -1,5 +1,6 @@
-![todolist](https://user-images.githubusercontent.com/48479522/112715217-bf33ef80-8f11-11eb-9318-5952509fb75d.png)
+![todolist](https://user-images.githubusercontent.com/48479522/113115482-ad668b00-9236-11eb-92c1-d7fec4f247fd.png)
 
+![Architecture](https://user-images.githubusercontent.com/48479522/113115437-a3dd2300-9236-11eb-9777-cfe05cde4f02.png)
 
 # Installation
 
