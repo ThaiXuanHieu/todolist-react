@@ -5,7 +5,6 @@ import Step from "../Step/Step";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import "./style.css";
-import "./Task.js";
 import {
   FormatDateInput,
   FormatHour,
