@@ -5,6 +5,7 @@ import Step from "../Step/Step";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import "./style.css";
+import "./Task.js";
 import {
   FormatDateInput,
   FormatHour,
@@ -26,7 +27,7 @@ const TaskDetail = (props) => {
     setTitleTask(task.title);
     task.dueDate
       ? setDueDate(new Date(FormatDateInput(task.dueDate)))
-      : setDueDate(new Date());
+      : setDueDate();
   }, [task.dueDate, task.title]);
 
   const handleUpdateTask = (e) => {
@@ -45,9 +46,7 @@ const TaskDetail = (props) => {
     dispatch(taskAction.update(task));
   };
 
-  const handleUpdateRemind = (task) => {
-    
-  };
+  const handleUpdateRemind = (task) => {};
 
   return (
     <div>
@@ -85,19 +84,22 @@ const TaskDetail = (props) => {
               <span className="title-btn">Thêm ngày đến hạn</span>
             </label>
           </div>
-          <div className="date-picler-custom">
-            <DatePicker
-              selected={dueDate}
-              onChange={(date) => setDueDate(date)}
-            />
-          </div>
-          <div className="mt-2">
-            <button
-              className="btn btn-primary"
-              onClick={() => handleUpdateDueDate(task)}
-            >
-              Lưu
-            </button>
+
+          <div>
+            <div className="date-picler-custom">
+              <DatePicker
+                selected={dueDate}
+                onChange={(date) => setDueDate(date)}
+              />
+            </div>
+            <div className="mt-2">
+              <button
+                className="btn btn-primary"
+                onClick={() => handleUpdateDueDate(task)}
+              >
+                Lưu
+              </button>
+            </div>
           </div>
         </div>
       </div>

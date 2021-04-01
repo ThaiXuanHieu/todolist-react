@@ -13,6 +13,7 @@
     "@testing-library/user-event": "^12.8.1",
     "axios": "^0.21.1",
     "bootstrap": "^4.6.0",
+    "material-ui-popup-state": "^1.8.0",
     "react": "^17.0.1",
     "react-contextmenu": "^2.14.0",
     "react-datepicker": "^3.6.0",
