@@ -9,6 +9,7 @@ export const TASK_ACTION_TYPES = {
   GET_ALL: "TASK/GET_ALL",
   SEARCH: "TASK/SEARCH",
   GET_BY_ID: "TASK/GET_BY_ID",
+  SORT_BY_PREDICATE: "TASK/SORT_BY_PREDICATE",
 };
 
 export const getTasks = (userId) => (dispatch) => {
@@ -16,6 +17,22 @@ export const getTasks = (userId) => (dispatch) => {
     .then((response) => {
       dispatch({
         type: TASK_ACTION_TYPES.GET_ALL,
+        payload: response.data,
+      });
+    })
+    .catch((error) => {
+      dispatch({
+        type: "ERROR",
+        payload: error,
+      });
+    });
+};
+
+export const sortByPredicate = (userId, predicate) => (dispatch) => {
+  return TaskService.sortByPredicate(userId, predicate)
+    .then((response) => {
+      dispatch({
+        type: TASK_ACTION_TYPES.SORT_BY_PREDICATE,
         payload: response.data,
       });
     })

@@ -13,6 +13,12 @@ export const task = (state = initialState, action) => {
         list: [...action.payload],
       };
 
+    case TASK_ACTION_TYPES.SORT_BY_PREDICATE:
+      return {
+        ...state,
+        list: [...action.payload],
+      };
+
     case TASK_ACTION_TYPES.SEARCH:
       return {
         ...state,

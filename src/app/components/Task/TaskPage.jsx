@@ -27,8 +27,7 @@ const TaskPage = (props) => {
   useEffect(() => {
     dispatch(taskAction.getTasks(user.id));
     dispatch(stepAction.getSteps());
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [dispatch, user.id]);
 
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef(null);
@@ -61,6 +60,11 @@ const TaskPage = (props) => {
 
     prevOpen.current = open;
   }, [open]);
+
+  const sortByPredicate = (uid, predicate) => {
+    dispatch(taskAction.sortByPredicate(uid, predicate));
+    setOpen(false);
+  }
 
   return (
     <div className="task-page">
@@ -122,14 +126,14 @@ const TaskPage = (props) => {
                             Sắp xếp theo
                           </p>
                           <hr />
-                          <MenuItem onClick={handleClose}>
+                          <MenuItem onClick={() => sortByPredicate(user.id, "importance")}>
                             <FontAwesomeIcon
                               icon="star"
                               style={{ color: "#767678", marginRight: "10px" }}
                             />
                             Tầm quan trọng
                           </MenuItem>
-                          <MenuItem onClick={handleClose}>
+                          <MenuItem onClick={() => sortByPredicate(user.id, "duaDate")}>
                             <FontAwesomeIcon
                               icon="calendar"
                               style={{ color: "#767678", marginRight: "10px" }}

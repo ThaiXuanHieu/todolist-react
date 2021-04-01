@@ -18,6 +18,22 @@ export const getTasks = async (userId) => {
   return data;
 };
 
+export const sortByPredicate = async (userId, predicate) => {
+  let data;
+  await api
+    .get(`${TASK_BASE_URL}/${userId}/tasks/sortby/${predicate}`)
+    .then((res) => {
+      data = res;
+    })
+    .catch((error) => {
+      if (error.response) {
+        data = error.response;
+      }
+    });
+
+  return data;
+};
+
 export const getTask = async (id) => {
   let response;
   await api
@@ -101,4 +117,5 @@ export default {
   remove,
   update,
   search,
+  sortByPredicate,
 };
