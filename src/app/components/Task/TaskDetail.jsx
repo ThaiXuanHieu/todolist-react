@@ -5,8 +5,13 @@ import Step from "../Step/Step";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import "./style.css";
-import { FormatDateInput } from "../../utils/formatDate";
+import {
+  FormatDateInput,
+  FormatHour,
+  FormatMinutes,
+} from "../../utils/formatDateTime";
 import File from "../File/File";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const TaskDetail = (props) => {
   // eslint-disable-next-line no-unused-vars
@@ -14,6 +19,8 @@ const TaskDetail = (props) => {
   const dispatch = useDispatch();
   const [titleTask, setTitleTask] = useState("");
   const [dueDate, setDueDate] = useState();
+  const [hour, setHour] = useState(FormatHour(new Date()));
+  const [minute, setMinute] = useState(FormatMinutes(new Date()));
 
   useEffect(() => {
     setTitleTask(task.title);
@@ -36,6 +43,10 @@ const TaskDetail = (props) => {
   const handleUpdateDueDate = (task) => {
     task.dueDate = dueDate;
     dispatch(taskAction.update(task));
+  };
+
+  const handleUpdateRemind = (task) => {
+    
   };
 
   return (
@@ -67,22 +78,68 @@ const TaskDetail = (props) => {
         <Step taskId={task.id} />
       </div>
       <div className="box-item-right update-dueDate p-2 bg-white">
-        <div className="date-picler-custom">
-          <p style={{ fontWeight: "500", fontSize: "14px", color: "#4f4f50" }}>
-            Thêm ngày đến hạn
-          </p>
-          <DatePicker
-            selected={dueDate}
-            onChange={(date) => setDueDate(date)}
-          />
+        <div className="section">
+          <div title="Thêm ngày đến hạn">
+            <label className="btn-choose-date m-0">
+              <FontAwesomeIcon icon="calendar" />
+              <span className="title-btn">Thêm ngày đến hạn</span>
+            </label>
+          </div>
+          <div className="date-picler-custom">
+            <DatePicker
+              selected={dueDate}
+              onChange={(date) => setDueDate(date)}
+            />
+          </div>
+          <div className="mt-2">
+            <button
+              className="btn btn-primary"
+              onClick={() => handleUpdateDueDate(task)}
+            >
+              Lưu
+            </button>
+          </div>
         </div>
-        <div className="mt-2">
-          <button
-            className="btn btn-primary"
-            onClick={() => handleUpdateDueDate(task)}
-          >
-            Lưu
-          </button>
+      </div>
+      <div className="box-item-right file p-2 bg-white">
+        <div className="section">
+          <div title="Nhắc tôi">
+            <label className="btn-choose-datetime m-0">
+              <FontAwesomeIcon icon="bell" />
+              <span className="title-btn">Nhắc tôi</span>
+            </label>
+          </div>
+          <div className="">
+            <div className="timePicker-input">
+              <div className="timePicker-time">
+                <input
+                  className="timePicker-hour"
+                  pattern="^[ء-ي٠-٩-१-९-०-९-\d]{1,2}"
+                  aria-label="giờ"
+                  value={hour}
+                  tabIndex="-1"
+                  onChange={(e) => setHour(e.target.value)}
+                />
+                :
+                <input
+                  className="timePicker-minute"
+                  pattern="^[ء-ي٠-٩-१-९-०-९-\d]{1,2}"
+                  aria-label="phút"
+                  value={minute}
+                  tabIndex="-1"
+                  onChange={(e) => setMinute(e.target.value)}
+                />
+              </div>
+            </div>
+          </div>
+          <div className="mt-2">
+            <button
+              className="btn btn-primary"
+              onClick={() => handleUpdateRemind(task)}
+            >
+              Lưu
+            </button>
+          </div>
         </div>
       </div>
       <div className="box-item-right file p-2 bg-white">

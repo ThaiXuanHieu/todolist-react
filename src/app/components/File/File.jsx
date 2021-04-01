@@ -5,7 +5,7 @@ const File = (props) => {
   return (
     <div className="section">
       <div title="Add File">
-        <label className="btn-upload-file" htmlFor="file-upload">
+        <label className="btn-upload-file m-0" htmlFor="file-upload">
           <FontAwesomeIcon icon="paperclip" />
           <span className="title-btn">Thêm tệp</span>
         </label>

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import * as taskAction from "../../actions/taskAction";
 import "./style.css";
-import { GetDate } from "../../utils/formatDate";
+import { GetDate } from "../../utils/formatDateTime";
 import Icon from "@material-ui/core/Icon";
 import { ContextMenu, MenuItem, ContextMenuTrigger } from "react-contextmenu";
 import Dialog from "@material-ui/core/Dialog";

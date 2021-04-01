@@ -208,3 +208,31 @@ textarea {
 .custom-selected {
   background-color: #f00;
 }
+
+.btn-choose-datetime, .btn-choose-date {
+  color: #767678;
+  cursor: pointer;
+  display: block;
+  padding: 10px 10px 10px 10px;
+}
+
+.timePicker-input {
+  flex-grow: 1;
+  display: flex;
+  justify-content: space-between;
+  background: transparent;
+  padding: 5px;
+  border: 1px solid #ced4da;
+}
+
+.timePicker-input .timePicker-time {
+  direction: ltr;
+}
+
+.timePicker-input input {
+  border: none;
+  outline: none;
+  background: transparent;
+  text-align: center;
+  width: 25px;
+}
