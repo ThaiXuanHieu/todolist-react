@@ -79,6 +79,27 @@ export const create = async (newTask) => {
   return data;
 };
 
+export const addFile = async (taskId, file) => {
+  let data;
+  let formData = new FormData();
+  formData.append("file", file);
+  await api
+    .post(`${TASK_BASE_URL}/${taskId}/files`, formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    })
+    .then((res) => {
+      data = res;
+    })
+    .catch((error) => {
+      if (error.response) {
+        data = error.response;
+      }
+    });
+  return data;
+};
+
 export const update = async (updateTask) => {
   let data;
   await api
@@ -114,6 +135,7 @@ export default {
   getTasks,
   getTask,
   create,
+  addFile,
   remove,
   update,
   search,

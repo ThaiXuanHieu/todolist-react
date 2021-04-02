@@ -47,6 +47,14 @@ export const task = (state = initialState, action) => {
         task: action.payload,
       };
 
+    case TASK_ACTION_TYPES.ADDFILE:
+      console.log(action.payload)
+      return {
+        ...state,
+        list: [...state.list],
+        task: action.payload,
+      };
+
     case TASK_ACTION_TYPES.DELETE:
       return {
         ...state,

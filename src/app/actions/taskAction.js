@@ -2,6 +2,7 @@ import TaskService from "../../services/taskService";
 
 export const TASK_ACTION_TYPES = {
   CREATE: "TASK/CREATE",
+  ADDFILE: "TASK/ADDFILE",
   UPDATE: "TASK/UPDATE",
   UPDATE_STATUS: "TASK/UPDATE_STATUS",
   UPDATE_TITLE: "TASK/UPDATE_TITLE",
@@ -81,6 +82,22 @@ export const create = (newTask) => (dispatch) => {
     .then((response) => {
       dispatch({
         type: TASK_ACTION_TYPES.CREATE,
+        payload: response.data,
+      });
+    })
+    .catch((error) => {
+      dispatch({
+        type: "ERROR",
+        payload: error,
+      });
+    });
+};
+
+export const addFile = (taskId, file) => (dispatch) => {
+  return TaskService.addFile(taskId, file)
+    .then((response) => {
+      dispatch({
+        type: TASK_ACTION_TYPES.ADDFILE,
         payload: response.data,
       });
     })

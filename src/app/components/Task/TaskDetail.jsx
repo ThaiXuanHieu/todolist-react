@@ -26,7 +26,7 @@ const TaskDetail = (props) => {
     setTitleTask(task.title);
     task.dueDate
       ? setDueDate(new Date(FormatDateInput(task.dueDate)))
-      : setDueDate();
+      : setDueDate(new Date());
   }, [task.dueDate, task.title]);
 
   const handleUpdateTask = (e) => {
@@ -144,7 +144,7 @@ const TaskDetail = (props) => {
         </div>
       </div>
       <div className="box-item-right file p-2 bg-white">
-        <File />
+        <File taskId={task.id} files={task.files} />
       </div>
     </div>
   );
