@@ -1,19 +1,17 @@
+/* eslint-disable react/jsx-no-target-blank */
 import React from "react";
-import { useDispatch } from "react-redux";
-import * as fileAction from "../../actions/fileAction";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Link } from "react-router-dom";
-import { formatTypeFile } from "../../utils/fileHelper";
+import { formatTypeFile, formatSizeFile } from "../../utils/fileHelper";
+import { backendUrl } from "../../utils/appSetting"
 
 const FileItem = (props) => {
-  const { file } = props;
+  const { file, onDeleteItem } = props;
   const [open, setOpen] = React.useState(false);
-  const dispatch = useDispatch();
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -24,29 +22,32 @@ const FileItem = (props) => {
   };
 
   const handleDelete = (id) => {
-    dispatch(fileAction.remove(id));
+    onDeleteItem(id);
     setOpen(false);
   };
 
   return (
     <div>
-      <Link className="file-item" to={file.path}>
-        <div className="file-thumbnail">
-          <div className="file-extension">
-            {file.type.slice(0, 3).toUpperCase()}
+      <div className="d-flex align-items-center">
+        <a className="file-item" href={ backendUrl + file.path} target="_blank">
+          <div className="file-thumbnail">
+            <div className="file-extension">
+              {file.type.slice(0, 3).toUpperCase()}
+            </div>
           </div>
-        </div>
-        <div className="file-detail">
-          <p className="file-name">{file.name}</p>
-          <div className="file-info">
-            <span className="file-size">{file.size}</span>
-            <span className="file-type">{formatTypeFile(file.type)}</span>
+          <div className="file-detail">
+            <p className="file-name">{file.name}</p>
+            <div className="file-info">
+              <span className="file-size">{formatSizeFile(file.size)}</span>
+              <span className="file-type">{formatTypeFile(file.type)}</span>
+            </div>
           </div>
-        </div>
+        </a>
         <button className="btn-deleteFile" onClick={handleClickOpen}>
           <FontAwesomeIcon icon="times" />
         </button>
-      </Link>
+      </div>
+
       <Dialog
         open={open}
         onClose={handleClose}
@@ -69,7 +70,7 @@ const FileItem = (props) => {
             onClick={() => handleDelete(file.id)}
             className="btn btn-danger"
           >
-            Xóa bước
+            Xóa tệp
           </button>
         </DialogActions>
       </Dialog>

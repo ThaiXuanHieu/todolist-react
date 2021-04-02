@@ -2,6 +2,7 @@ import { useDispatch } from "react-redux";
 import "./style.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import * as taskAction from "../../actions/taskAction";
+import * as fileAction from "../../actions/fileAction";
 import FileItem from "./FileItem";
 
 const File = (props) => {
@@ -9,6 +10,10 @@ const File = (props) => {
   const dispatch = useDispatch();
   const handleUploadFile = (e) => {
     dispatch(taskAction.addFile(taskId, e.target.files[0]));
+  };
+
+  const handleDeleteItem = (id) => {
+    dispatch(fileAction.remove(id));
   };
 
   return (
@@ -30,7 +35,11 @@ const File = (props) => {
       <div className="list-file">
         {files &&
           files.map((item) => (
-            <FileItem key={item.id} file={item} />
+            <FileItem
+              key={item.id}
+              file={item}
+              onDeleteItem={handleDeleteItem}
+            />
           ))}
       </div>
     </div>

@@ -12,3 +12,7 @@ export const formatTypeFile = (type) => {
       return;
   }
 }
+
+export const formatSizeFile = (byte) => {
+  return (byte / (1024*1024)).toFixed(2) + "MB";
+}
