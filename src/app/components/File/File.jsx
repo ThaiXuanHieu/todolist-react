@@ -1,9 +1,8 @@
 import { useDispatch } from "react-redux";
 import "./style.css";
-import { Link } from "react-router-dom";
-import { formatTypeFile } from "../../utils/fileHelper";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import * as taskAction from "../../actions/taskAction";
+import FileItem from "./FileItem";
 
 const File = (props) => {
   const { taskId, files } = props;
@@ -31,23 +30,7 @@ const File = (props) => {
       <div className="list-file">
         {files &&
           files.map((item) => (
-            <Link key={item.id} className="file-item" to={item.path}>
-              <div className="file-thumbnail">
-                <div className="file-extension">
-                  {item.type.slice(0, 3).toUpperCase()}
-                </div>
-              </div>
-              <div className="file-detail">
-                <p className="file-name">{item.name}</p>
-                <div className="file-info">
-                  <span className="file-size">{item.size}</span>
-                  <span className="file-type">{formatTypeFile(item.type)}</span>
-                </div>
-              </div>
-              <button className="btn-deleteFile">
-                <FontAwesomeIcon icon="times" />
-              </button>
-            </Link>
+            <FileItem key={item.id} file={item} />
           ))}
       </div>
     </div>
