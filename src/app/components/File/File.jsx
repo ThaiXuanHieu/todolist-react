@@ -1,4 +1,5 @@
-import { useDispatch } from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import "./style.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import * as taskAction from "../../actions/taskAction";
@@ -6,8 +7,16 @@ import * as fileAction from "../../actions/fileAction";
 import FileItem from "./FileItem";
 
 const File = (props) => {
-  const { taskId, files } = props;
+  const { taskId } = props;
+  const { files } = useSelector((state) => state.file);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (taskId) {
+      dispatch(fileAction.getByTaskId(taskId));
+    }
+  }, [dispatch, taskId]);
+
   const handleUploadFile = (e) => {
     dispatch(taskAction.addFile(taskId, e.target.files[0]));
   };

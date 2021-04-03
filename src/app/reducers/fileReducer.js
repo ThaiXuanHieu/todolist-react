@@ -13,11 +13,17 @@ export const file = (state = initialState, action) => {
         list: [...action.payload],
       };
 
-    case FILE_ACTION_TYPES.GET_BY_ID:
+      case FILE_ACTION_TYPES.ADDFILE:
       return {
         ...state,
         list: [...state.list],
-        task: action.payload,
+        files: [...action.payload.files]
+      };
+
+    case FILE_ACTION_TYPES.GET_BY_ID:
+      return {
+        ...state,
+        list: action.payload,
       };
 
     case FILE_ACTION_TYPES.GET_BY_TASKID:

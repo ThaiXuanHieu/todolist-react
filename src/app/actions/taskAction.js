@@ -1,4 +1,5 @@
 import TaskService from "../../services/taskService";
+import { FILE_ACTION_TYPES } from "./fileAction";
 
 export const TASK_ACTION_TYPES = {
   CREATE: "TASK/CREATE",
@@ -97,7 +98,7 @@ export const addFile = (taskId, file) => (dispatch) => {
   return TaskService.addFile(taskId, file)
     .then((response) => {
       dispatch({
-        type: TASK_ACTION_TYPES.ADDFILE,
+        type: FILE_ACTION_TYPES.ADDFILE,
         payload: response.data,
       });
     })

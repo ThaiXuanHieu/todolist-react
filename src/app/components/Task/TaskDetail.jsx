@@ -144,7 +144,7 @@ const TaskDetail = (props) => {
         </div>
       </div>
       <div className="box-item-right file p-2 bg-white">
-        <File taskId={task.id} files={task.files} />
+        <File taskId={task.id} />
       </div>
     </div>
   );

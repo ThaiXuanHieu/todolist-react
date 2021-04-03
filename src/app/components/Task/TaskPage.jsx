@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import * as taskAction from "../../actions/taskAction";
 import * as stepAction from "../../actions/stepAction";
+import * as fileAction from "../../actions/fileAction";
 import Header from "../Header/Header";
 import SideBar from "../SideBar/SideBar";
 import TaskDetail from "./TaskDetail";
@@ -27,6 +28,7 @@ const TaskPage = (props) => {
   useEffect(() => {
     dispatch(taskAction.getTasks(user.id));
     dispatch(stepAction.getSteps());
+    dispatch(fileAction.getFiles());
   }, [dispatch, user.id]);
 
   const [open, setOpen] = React.useState(false);

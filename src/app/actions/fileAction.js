@@ -1,6 +1,7 @@
 import FileService from "../../services/fileService";
 
 export const FILE_ACTION_TYPES = {
+  ADDFILE: "FILE/ADDFILE",
   UPDATE: "FILE/UPDATE",
   DELETE: "FILE/DELETE",
   GET_ALL: "FILE/GET_ALL",
