@@ -9,6 +9,7 @@ export const TASK_ACTION_TYPES = {
   UPDATE_TITLE: "TASK/UPDATE_TITLE",
   DELETE: "TASK/DELETE",
   GET_ALL: "TASK/GET_ALL",
+  GET_TASK_IMPORTANT: "TASK/GET_TASK_IMPORTANT",
   SEARCH: "TASK/SEARCH",
   GET_BY_ID: "TASK/GET_BY_ID",
   SORT_BY_PREDICATE: "TASK/SORT_BY_PREDICATE",
@@ -20,6 +21,22 @@ export const getTasks = (userId) => (dispatch) => {
       dispatch({
         type: TASK_ACTION_TYPES.GET_ALL,
         payload: response.data,
+      });
+    })
+    .catch((error) => {
+      dispatch({
+        type: "ERROR",
+        payload: error,
+      });
+    });
+};
+
+export const getTasksImportant = (userId) => (dispatch) => {
+  return TaskService.getTasks(userId)
+    .then((response) => {
+      dispatch({
+        type: TASK_ACTION_TYPES.GET_TASK_IMPORTANT,
+        payload: response.data.filter((x) => x.isImportant === true),
       });
     })
     .catch((error) => {

@@ -22,6 +22,10 @@ const TaskForm = (props) => {
       title: title,
       createdBy: user.id,
     };
+    
+    if (!list.find((item) => item.isImportant === false)) {
+      task.isImportant = true;
+    }
 
     // firebaseDb.child("tasks").push(
     //   {

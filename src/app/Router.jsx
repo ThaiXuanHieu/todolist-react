@@ -11,6 +11,7 @@ const Router = () => {
       <Route path="/register" component={RegisterForm} />
       <Route path="/task" component={TaskPage} />
       <Route path="/profile" component={Profile} />
+      <Route path="/task/important" component={TaskPage} />
     </Switch>
   );
 };

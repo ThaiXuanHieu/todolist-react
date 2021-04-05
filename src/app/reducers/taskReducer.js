@@ -13,6 +13,12 @@ export const task = (state = initialState, action) => {
         list: [...action.payload],
       };
 
+    case TASK_ACTION_TYPES.GET_TASK_IMPORTANT:
+      return {
+        ...state,
+        list: [...action.payload],
+      };
+
     case TASK_ACTION_TYPES.SORT_BY_PREDICATE:
       return {
         ...state,
@@ -48,7 +54,6 @@ export const task = (state = initialState, action) => {
       };
 
     case TASK_ACTION_TYPES.ADDFILE:
-      console.log(action.payload)
       return {
         ...state,
         list: [...state.list],
