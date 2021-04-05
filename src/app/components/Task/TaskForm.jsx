@@ -1,11 +1,13 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import * as taskAction from "../../actions/taskAction";
 import "./style.css";
+import firebaseDb from "../../firebase";
 
 const TaskForm = (props) => {
   const [id, setId] = useState(0);
   const [title, setTitle] = useState("");
+  const { list } = useSelector((state) => state.task);
   const dispatch = useDispatch();
 
   function handleSubmit(e) {
@@ -20,6 +22,20 @@ const TaskForm = (props) => {
       title: title,
       createdBy: user.id,
     };
+
+    // firebaseDb.child("tasks").push(
+    //   {
+    //     id: list.shift().id + 1,
+    //     title: title,
+    //     createdBy: user.id,
+    //     createdDate: new Date(),
+    //   },
+    //   (err) => {
+    //     if (err) {
+    //       console.log(err);
+    //     }
+    //   }
+    // );
 
     dispatch(taskAction.create(task))
       .then(() => {
