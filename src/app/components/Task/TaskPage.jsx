@@ -17,12 +17,25 @@ import MenuItem from "@material-ui/core/MenuItem";
 import MenuList from "@material-ui/core/MenuList";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Icon } from "@material-ui/core";
+//import firebaseDb from "../../firebase";
 
 const TaskPage = (props) => {
   // eslint-disable-next-line no-unused-vars
   const { list, task } = useSelector((state) => state.task);
   const [isShow, setIsShow] = useState(false);
   const dispatch = useDispatch();
+
+  //const [taskObjects, setTaskObjects] = useState();
+
+  // useEffect(() => {
+  //   firebaseDb.child("Tasks").on("value", (snapshot) => {
+  //     if (snapshot.val() != null) {
+  //       setTaskObjects({
+  //         ...snapshot.val(),
+  //       });
+  //     }
+  //   });
+  // });
 
   const user = JSON.parse(localStorage.getItem("user"));
   useEffect(() => {
@@ -179,6 +192,7 @@ const TaskPage = (props) => {
               tasks={list}
               handleClickItem={() => setIsShow(true)}
               deleteItem={() => setIsShow(false)}
+              //taskObjects={taskObjects}
             />
           </div>
           <div className="col-right col-md-3 p-0">

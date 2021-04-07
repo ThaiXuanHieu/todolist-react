@@ -12,6 +12,7 @@ import {
 } from "../../utils/formatDateTime";
 import File from "../File/File";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+//import firebaseDb from "../../firebase";
 
 const TaskDetail = (props) => {
   // eslint-disable-next-line no-unused-vars
@@ -51,6 +52,11 @@ const TaskDetail = (props) => {
 
   const handleUpdateDueDate = (task) => {
     task.dueDate = NewDateTime(dueDate, hour, minute);
+    // firebaseDb.child(`Tasks/${task.id}`).set(task, (err) => {
+    //   if (err) {
+    //     console.log(err);
+    //   }
+    // });
     dispatch(taskAction.update(task));
   };
 
