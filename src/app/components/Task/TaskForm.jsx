@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import * as taskAction from "../../actions/taskAction";
 import "./style.css";
-import firebaseDb from "../../firebase";
+import firebase from "../../firebase";
 
 const TaskForm = (props) => {
   const [id, setId] = useState(0);
@@ -22,25 +22,25 @@ const TaskForm = (props) => {
       title: title,
       createdBy: user.id,
     };
-    
+
     if (!list.some((item) => item.isImportant === false)) {
       task.isImportant = true;
     }
 
-    // firebaseDb.child("tasks").push(
-    //   {
-    //     id: list.shift().id + 1,
-    //     title: title,
-    //     createdBy: user.id,
-    //     createdDate: new Date(),
-    //   },
-    //   (err) => {
-    //     if (err) {
-    //       console.log(err);
-    //     }
-    //   }
-    // );
-
+    const taskRef = firebase.database().ref("tasks");
+    taskRef.push(
+      {
+        id: list.pop().id,
+        title: title,
+        createdBy: user.id,
+        dueDate: null,
+      },
+      (err) => {
+        if (err) {
+          console.log(err);
+        }
+      }
+    );
     dispatch(taskAction.create(task))
       .then(() => {
         setId(0);
