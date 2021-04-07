@@ -53,6 +53,6 @@ export const NewDateTime = (oldDateTime, hour, minute) => {
     ":" +
     minute +
     ":00.000Z";
-  console.log("New " + newDateTime);
+
   return newDateTime;
 };

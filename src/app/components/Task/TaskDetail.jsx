@@ -51,7 +51,6 @@ const TaskDetail = (props) => {
 
   const handleUpdateDueDate = (task) => {
     task.dueDate = NewDateTime(dueDate, hour, minute);
-    console.log(task.dueDate);
     dispatch(taskAction.update(task));
   };
 
