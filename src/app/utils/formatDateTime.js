@@ -11,55 +11,48 @@ function reduceDateTime(date) {
   let year = dateTime.getFullYear();
 
   return {
-    day : day,
+    day: day,
     month: month,
-    year: year
-  }
+    year: year,
+  };
 }
 
 export const GetDate = (date) => {
-  const dateTime = reduceDateTime(date)
+  const dateTime = reduceDateTime(date);
   return dateTime.month + "/" + dateTime.day + "/" + dateTime.year;
 };
 
 export const FormatDateTime = (date) => {
-  const dateTime = reduceDateTime(date)
+  const dateTime = reduceDateTime(date);
   return dateTime.day + "/" + dateTime.month + "/" + dateTime.year;
 };
 
 export const FormatDateInput = (date) => {
-  const dateTime = reduceDateTime(date)
+  const dateTime = reduceDateTime(date);
   return dateTime.year + "-" + dateTime.month + "-" + dateTime.day;
 };
 
 export const FormatHour = (date) => {
-  let dateTime = new Date(date);
-  let hour = dateTime.getHours();
-  if (hour < 10) {
-    hour = "0" + hour;
-  }
-  return hour;
+  return date.toString().split("T")[1].slice(0,2);
 };
 
 export const FormatMinutes = (date) => {
-  let dateTime = new Date(date);
-  let minutes = dateTime.getMinutes();
-  if (minutes < 10) {
-    minutes = "0" + minutes;
-  }
-  return minutes;
+  return date.toString().split("T")[1].slice(3,5);
 };
 
 export const NewDateTime = (oldDateTime, hour, minute) => {
-  let dateTime = oldDateTime;
-  console.log("Old " + oldDateTime);
-  let date = GetDate(dateTime);
-  console.log("Date " + date);
-  let time = dateTime.toLocaleTimeString().toString().split(":");
-  time[0] = hour;
-  time[1] = minute;
-  time = time.join(":");
-  dateTime = date + " " + time;
-  console.log("New " + new Date(dateTime));
-  return new Date(dateTime);
+  let dateTime = reduceDateTime(oldDateTime);
+  let newDateTime =
+    dateTime.year +
+    "-" +
+    dateTime.month +
+    "-" +
+    dateTime.day +
+    "T" +
+    hour +
+    ":" +
+    minute +
+    ":00.000Z";
+  console.log("New " + newDateTime);
+  return newDateTime;
 };

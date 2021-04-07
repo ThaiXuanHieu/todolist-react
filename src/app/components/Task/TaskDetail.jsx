@@ -33,8 +33,8 @@ const TaskDetail = (props) => {
       setMinute(FormatMinutes(task.dueDate));
     } else {
       setDueDate(new Date());
-      setHour(FormatHour(new Date()));
-      setMinute(FormatMinutes(new Date()));
+      setHour("23");
+      setMinute("59");
     }
   }, [task.dueDate]);
 
