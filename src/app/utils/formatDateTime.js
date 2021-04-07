@@ -33,11 +33,11 @@ export const FormatDateInput = (date) => {
 };
 
 export const FormatHour = (date) => {
-  return date.toString().split("T")[1].slice(0,2);
+  return date.toString().split("T")[1].slice(0, 2);
 };
 
 export const FormatMinutes = (date) => {
-  return date.toString().split("T")[1].slice(3,5);
+  return date.toString().split("T")[1].slice(3, 5);
 };
 
 export const NewDateTime = (oldDateTime, hour, minute) => {
