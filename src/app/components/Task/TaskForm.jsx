@@ -23,7 +23,7 @@ const TaskForm = (props) => {
       createdBy: user.id,
     };
     
-    if (!list.find((item) => item.isImportant === false)) {
+    if (!list.some((item) => item.isImportant === false)) {
       task.isImportant = true;
     }
 

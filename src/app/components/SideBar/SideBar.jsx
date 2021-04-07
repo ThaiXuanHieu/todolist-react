@@ -20,7 +20,7 @@ const SideBar = (props) => {
     <ul className="sidebar mt-3">
       <li>
         <div className="sidebar-item">
-          <Link to="/task" className="sidebar-link" onClick={getTasks}>
+          <Link to="/task" className="sidebar-link" onClick={() => getTasks()}>
             <FontAwesomeIcon icon="home" /> <span>Task</span>
           </Link>
         </div>
@@ -35,7 +35,11 @@ const SideBar = (props) => {
       </li>
       <li>
         <div className="sidebar-item">
-          <Link to="/task/important" className="sidebar-link" onClick={getTasksImportant}>
+          <Link
+            to="/task/important"
+            className="sidebar-link"
+            onClick={() => getTasksImportant()}
+          >
             <FontAwesomeIcon icon="star" />
             <span>Quan trọng</span>
           </Link>

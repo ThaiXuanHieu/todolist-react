@@ -82,7 +82,7 @@ const TaskPage = (props) => {
             className={isShow ? "col-center col-md-7" : "col-center col-md-10"}
             style={{ backgroundColor: "white", height: "100%" }}
           >
-            {list.find((item) => item.isImportant === false) ? (
+            {list.some((item) => item.isImportant === false) ? (
               <div className="task-toolBar d-flex justify-content-between">
                 <h5 className="m-3" style={{ color: "#3e69e4" }}>
                   Task
@@ -147,7 +147,7 @@ const TaskPage = (props) => {
                             </MenuItem>
                             <MenuItem
                               onClick={() =>
-                                sortByPredicate(user.id, "duaDate")
+                                sortByPredicate(user.id, "dueDate")
                               }
                             >
                               <FontAwesomeIcon

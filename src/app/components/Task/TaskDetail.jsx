@@ -6,9 +6,9 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import "./style.css";
 import {
-  FormatDateInput,
   FormatHour,
   FormatMinutes,
+  NewDateTime,
 } from "../../utils/formatDateTime";
 import File from "../File/File";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -19,15 +19,24 @@ const TaskDetail = (props) => {
   const dispatch = useDispatch();
   const [titleTask, setTitleTask] = useState("");
   const [dueDate, setDueDate] = useState();
-  const [hour, setHour] = useState(FormatHour(new Date()));
-  const [minute, setMinute] = useState(FormatMinutes(new Date()));
+  const [hour, setHour] = useState();
+  const [minute, setMinute] = useState();
 
   useEffect(() => {
     setTitleTask(task.title);
-    task.dueDate
-      ? setDueDate(new Date(FormatDateInput(task.dueDate)))
-      : setDueDate(new Date());
-  }, [task.dueDate, task.title]);
+  }, [task.title]);
+
+  useEffect(() => {
+    if (task.dueDate) {
+      setDueDate(new Date(task.dueDate));
+      setHour(FormatHour(task.dueDate));
+      setMinute(FormatMinutes(task.dueDate));
+    } else {
+      setDueDate(new Date());
+      setHour(FormatHour(new Date()));
+      setMinute(FormatMinutes(new Date()));
+    }
+  }, [task.dueDate]);
 
   const handleUpdateTask = (e) => {
     e.preventDefault();
@@ -41,11 +50,15 @@ const TaskDetail = (props) => {
   };
 
   const handleUpdateDueDate = (task) => {
-    task.dueDate = dueDate;
+    task.dueDate = NewDateTime(dueDate, hour, minute);
+    console.log(task.dueDate);
     dispatch(taskAction.update(task));
   };
 
-  const handleUpdateRemind = (task) => {};
+  const handleUpdateRemind = (task) => {
+    task.dueDate = NewDateTime(dueDate, hour, minute);
+    dispatch(taskAction.update(task));
+  };
 
   return (
     <div>

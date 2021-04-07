@@ -110,7 +110,9 @@ const TaskList = (props) => {
                     ""
                   )}
                   <span className="dueDate">
-                    {!item.dueDate ? item.dueDate : GetDate(item.dueDate)}
+                    {!item.dueDate
+                      ? item.dueDate
+                      : GetDate(item.dueDate)}
                   </span>
                 </div>
               </button>
@@ -163,7 +165,9 @@ const TaskList = (props) => {
                     ""
                   )}
                   <span className="dueDate">
-                    {!item.dueDate ? item.dueDate : GetDate(item.dueDate)}
+                    {!item.dueDate
+                      ? item.dueDate
+                      : GetDate(item.dueDate)}
                   </span>
                 </div>
               </button>
