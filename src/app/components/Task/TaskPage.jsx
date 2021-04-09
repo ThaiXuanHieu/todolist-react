@@ -95,97 +95,85 @@ const TaskPage = (props) => {
             className={isShow ? "col-center col-md-7" : "col-center col-md-10"}
             style={{ backgroundColor: "white", height: "100%" }}
           >
-            {list.some((item) => item.isImportant === false) ? (
-              <div className="task-toolBar d-flex justify-content-between">
-                <h5 className="m-3" style={{ color: "#3e69e4" }}>
-                  Task
-                </h5>
-                <Button
-                  ref={anchorRef}
-                  aria-controls={open ? "menu-list-grow" : undefined}
-                  aria-haspopup="true"
-                  onClick={handleToggle}
-                  className="btn-toolBar"
-                  style={{ color: "#3e69e4" }}
-                >
-                  <Icon>sort</Icon>
-                  Sắp xếp
-                </Button>
-                <Popper
-                  open={open}
-                  anchorEl={anchorRef.current}
-                  role={undefined}
-                  transition
-                  disablePortal
-                  style={{ zIndex: "100" }}
-                >
-                  {({ TransitionProps, placement }) => (
-                    <Grow
-                      {...TransitionProps}
-                      style={{
-                        transformOrigin:
-                          placement === "bottom"
-                            ? "center top"
-                            : "center bottom",
-                        borderRadius: "0px",
-                      }}
-                    >
-                      <Paper>
-                        <ClickAwayListener onClickAway={handleClose}>
-                          <MenuList
-                            autoFocusItem={open}
-                            id="menu-list-grow"
-                            onKeyDown={handleListKeyDown}
+            <div className="task-toolBar d-flex justify-content-between">
+              <h5 className="m-3" style={{ color: "#3e69e4" }}>
+                Task
+              </h5>
+              <Button
+                ref={anchorRef}
+                aria-controls={open ? "menu-list-grow" : undefined}
+                aria-haspopup="true"
+                onClick={handleToggle}
+                className="btn-toolBar"
+                style={{ color: "#3e69e4" }}
+              >
+                <Icon>sort</Icon>
+                Sắp xếp
+              </Button>
+              <Popper
+                open={open}
+                anchorEl={anchorRef.current}
+                role={undefined}
+                transition
+                disablePortal
+                style={{ zIndex: "100" }}
+              >
+                {({ TransitionProps, placement }) => (
+                  <Grow
+                    {...TransitionProps}
+                    style={{
+                      transformOrigin:
+                        placement === "bottom" ? "center top" : "center bottom",
+                      borderRadius: "0px",
+                    }}
+                  >
+                    <Paper>
+                      <ClickAwayListener onClickAway={handleClose}>
+                        <MenuList
+                          autoFocusItem={open}
+                          id="menu-list-grow"
+                          onKeyDown={handleListKeyDown}
+                        >
+                          <p
+                            className="text-center"
+                            style={{ outline: "none" }}
                           >
-                            <p
-                              className="text-center"
-                              style={{ outline: "none" }}
-                            >
-                              Sắp xếp theo
-                            </p>
-                            <hr />
-                            <MenuItem
-                              onClick={() =>
-                                sortByPredicate(user.id, "importance")
-                              }
-                            >
-                              <FontAwesomeIcon
-                                icon="star"
-                                style={{
-                                  color: "#767678",
-                                  marginRight: "10px",
-                                }}
-                              />
-                              Tầm quan trọng
-                            </MenuItem>
-                            <MenuItem
-                              onClick={() =>
-                                sortByPredicate(user.id, "dueDate")
-                              }
-                            >
-                              <FontAwesomeIcon
-                                icon="calendar"
-                                style={{
-                                  color: "#767678",
-                                  marginRight: "10px",
-                                }}
-                              />
-                              Ngày đến hạn
-                            </MenuItem>
-                          </MenuList>
-                        </ClickAwayListener>
-                      </Paper>
-                    </Grow>
-                  )}
-                </Popper>
-              </div>
-            ) : (
-              <div className="task-toolBar d-flex justify-content-between">
-                <h5 className="m-3" style={{ color: "#3e69e4" }}>
-                  Quan trọng
-                </h5>
-              </div>
-            )}
+                            Sắp xếp theo
+                          </p>
+                          <hr />
+                          <MenuItem
+                            onClick={() =>
+                              sortByPredicate(user.id, "importance")
+                            }
+                          >
+                            <FontAwesomeIcon
+                              icon="star"
+                              style={{
+                                color: "#767678",
+                                marginRight: "10px",
+                              }}
+                            />
+                            Tầm quan trọng
+                          </MenuItem>
+                          <MenuItem
+                            onClick={() => sortByPredicate(user.id, "dueDate")}
+                          >
+                            <FontAwesomeIcon
+                              icon="calendar"
+                              style={{
+                                color: "#767678",
+                                marginRight: "10px",
+                              }}
+                            />
+                            Ngày đến hạn
+                          </MenuItem>
+                        </MenuList>
+                      </ClickAwayListener>
+                    </Paper>
+                  </Grow>
+                )}
+              </Popper>
+            </div>
 
             <TaskForm />
             <TaskList

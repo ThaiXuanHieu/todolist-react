@@ -1,26 +1,13 @@
-import { useDispatch } from "react-redux";
 import "./style.css";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import * as taskAction from "../../actions/taskAction";
 
 const SideBar = (props) => {
-  const user = JSON.parse(localStorage.getItem("user"));
-  const dispatch = useDispatch();
-
-  const getTasks = () => {
-    dispatch(taskAction.getTasks(user.id));
-  };
-
-  const getTasksImportant = () => {
-    dispatch(taskAction.getTasksImportant(user.id));
-  };
-
   return (
     <ul className="sidebar mt-3">
       <li>
         <div className="sidebar-item">
-          <Link to="/task" className="sidebar-link" onClick={() => getTasks()}>
+          <Link to="/task" className="sidebar-link">
             <FontAwesomeIcon icon="home" /> <span>Task</span>
           </Link>
         </div>
@@ -35,11 +22,7 @@ const SideBar = (props) => {
       </li>
       <li>
         <div className="sidebar-item">
-          <Link
-            to="/task/important"
-            className="sidebar-link"
-            onClick={() => getTasksImportant()}
-          >
+          <Link to="/task/important" className="sidebar-link">
             <FontAwesomeIcon icon="star" />
             <span>Quan trọng</span>
           </Link>
