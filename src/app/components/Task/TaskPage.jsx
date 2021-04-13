@@ -18,11 +18,13 @@ import MenuList from "@material-ui/core/MenuList";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Icon } from "@material-ui/core";
 //import firebaseDb from "../../firebase";
+//import { HubConnectionBuilder } from "@microsoft/signalr";
 
 const TaskPage = (props) => {
   // eslint-disable-next-line no-unused-vars
   const { list, task } = useSelector((state) => state.task);
   const [isShow, setIsShow] = useState(false);
+  //const [connection, setConnection] = useState();
   const dispatch = useDispatch();
 
   //const [taskObjects, setTaskObjects] = useState();
@@ -36,6 +38,60 @@ const TaskPage = (props) => {
   //     }
   //   });
   // });
+
+  // useEffect(() => {
+  //   const connect = new HubConnectionBuilder()
+  //     .withUrl("https://localhost:12345/hubs/notifications")
+  //     .withAutomaticReconnect()
+  //     .build();
+
+  //   setConnection(connect);
+  // }, []);
+
+  // useEffect(() => async () => {
+  //   if (connection) await connection.send("PushNotification", "Task ... đã quá hạn");
+  // }, [connection]);
+
+  // useEffect(() => {
+  //   if (connection) {
+  //     connection
+  //       .start()
+  //       .then(() => {
+  //         connection.on("ReceiveNotify", (message) => {
+  //           if (!window.Notification) {
+  //             console.log("Trình duyệt không hỗ trợ thông báo.");
+  //           } else {
+  //             // check if permission is already granted
+  //             if (Notification.permission === "granted") {
+  //               // show notification here
+  //               let notify = new Notification("TodoList", {
+  //                 body: message,
+  //                 icon: "https://ow2.res.office365.com/todo/338511_2.39.7/favicon.ico",
+  //               });
+  //             } else {
+  //               // request permission from user
+  //               Notification.requestPermission()
+  //                 .then(function (p) {
+  //                   if (p === "granted") {
+  //                     // show notification here
+  //                     let notify = new Notification("TodoList", {
+  //                       body: message,
+  //                       icon: "https://ow2.res.office365.com/todo/338511_2.39.7/favicon.ico",
+  //                     });
+  //                   } else {
+  //                     console.log("Người dùng chặn thông báo.");
+  //                   }
+  //                 })
+  //                 .catch(function (err) {
+  //                   console.error(err);
+  //                 });
+  //             }
+  //           }
+  //         });
+  //       })
+  //       .catch((error) => console.log(error));
+  //   }
+  // }, [connection]);
 
   const user = JSON.parse(localStorage.getItem("user"));
   useEffect(() => {
